@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text } from "react-native";
 
-export const ProfileImage = () => {
+export const ProfileImage = ({ image }) => {
   return (
     <Image
       source={require("../../../assets/dummy_image.jpg")}

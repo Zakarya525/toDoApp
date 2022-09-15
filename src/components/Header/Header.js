@@ -5,7 +5,7 @@ import { ProfileImage } from "../ProfileImage/ProfileImage";
 const Header = () => {
   return (
     <View style={styles.header}>
-      <ProfileImage />
+      <ProfileImage image="" />
       <HeaderTitle name="Furqan" />
     </View>
   );

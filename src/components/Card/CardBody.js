@@ -1,14 +1,29 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import { CardItem } from "./CardItem";
 import { taskList } from "../../../data/task_list";
+import { useState } from "react";
 
 export const CardBody = () => {
-  const renderItem = ({ item }) => <CardItem task={item} />;
+  const [tasks, setTasks] = useState(taskList);
+  const renderItem = ({ item }) => (
+    <CardItem task={item} onPress={onCardItemPress} />
+  );
+
+  function onCardItemPress(id) {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          task.completed = !task.completed;
+        }
+        return task;
+      })
+    );
+  }
 
   return (
     <FlatList
       style={styles.cardBody}
-      data={taskList}
+      data={tasks}
       renderItem={renderItem}
       keyExtractor={(task) => task.id}
     />

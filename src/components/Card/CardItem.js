@@ -3,9 +3,9 @@ import { fontSizes, spacing } from "../../utils/sizes";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../utils/colors";
 
-export const CardItem = ({ task }) => {
+export const CardItem = ({ task, onPress }) => {
   return (
-    <TouchableOpacity style={styles.cardItem}>
+    <TouchableOpacity style={styles.cardItem} onPress={() => onPress(task.id)}>
       <Ionicons
         style={styles.icon}
         name={task.completed ? "checkmark-circle" : "checkmark-circle-outline"}

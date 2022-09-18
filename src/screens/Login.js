@@ -5,7 +5,7 @@ import {fontSizes, spacing} from '../utilities/sizes'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import ButtonSecondary from '../components/Buttons/ButtonSecondary'
-import {user_api} from '../api/user_api'
+import user_api from '../api/user_api'
 import {useNavigation} from '@react-navigation/native'
 
 const Login = () => {

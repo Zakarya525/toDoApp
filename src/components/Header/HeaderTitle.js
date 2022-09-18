@@ -12,6 +12,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: fontSizes.lg,
     lineHeight: fontSizes.lg * 2,
-    fontFamily: "Roboto_500Medium",
+    fontFamily: "Poppins_500Medium",
   },
 });

@@ -1,14 +1,15 @@
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { CardItem } from "./CardItem";
-import { taskList } from "../../../data/task_list";
 
-export const CardBody = () => {
-  const renderItem = ({ item }) => <CardItem task={item} />;
+export const CardBody = ({ tasks, onCardItemPress }) => {
+  const renderItem = ({ item }) => (
+    <CardItem task={item} onPress={onCardItemPress} />
+  );
 
   return (
     <FlatList
       style={styles.cardBody}
-      data={taskList}
+      data={tasks}
       renderItem={renderItem}
       keyExtractor={(task) => task.id}
     />
@@ -21,3 +22,15 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
 });
+
+
+function even() {
+  console.log("good")
+}
+
+function print_log(func){
+  func()
+}
+
+print_log(even)
+

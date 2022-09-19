@@ -1,11 +1,36 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { fontSizes, spacing } from "../../utils/sizes";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../utils/colors";
+import { Audio } from "expo-av";
+import { useEffect, useState } from "react";
 
-export const CardItem = ({ task }) => {
+export const CardItem = ({ task, onPress }) => {
+  const [sound, setSound] = useState();
+
+  async function onTaskItemPress(task) {
+    onPress(task.id);
+    if (!task.completed) return;
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../../assets/done.mp3")
+    );
+    setSound(sound);
+
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
   return (
-    <TouchableOpacity style={styles.cardItem}>
+    <TouchableOpacity
+      style={styles.cardItem}
+      onPress={() => onTaskItemPress(task)}
+    >
       <Ionicons
         style={styles.icon}
         name={task.completed ? "checkmark-circle" : "checkmark-circle-outline"}
@@ -28,14 +53,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    paddingLeft: spacing.sm,
-    marginBottom: 2,
-    fontSize: fontSizes.md + 2,
     flex: 1,
+    paddingLeft: spacing.sm,
+    fontSize: fontSizes.md + 2,
+    fontFamily: "Poppins_300Light",
   },
   strikeThroughText: {
     textDecorationLine: "line-through",
     textDecorationStyle: "dashed",
-    textDecorationColor: "red",
   },
 });

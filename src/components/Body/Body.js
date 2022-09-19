@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: fontSizes.lg,
-    fontFamily: "Roboto_400Regular",
+    fontFamily: "Poppins_400Regular",
   },
 });

@@ -1,18 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import HeaderTitle from './HeaderTitle'
-import HeaderText from './HeaderText'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import HeaderTitle from './HeaderTitle';
+import HeaderText from './HeaderText';
 
-const Header = ({title, text}) => {
+const Header = ({ title, text }) => {
   return (
     <View style={styles.header}>
       <HeaderTitle text={title} />
       <HeaderText text={text} />
     </View>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
 
 const styles = StyleSheet.create({
   header: {
@@ -21,5 +21,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-  }
-})
+  },
+});

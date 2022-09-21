@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { spacing } from '../../utilities/sizes';
 import { fontSizes } from '../../utilities/sizes';
 
-const HeaderTitle = ({ text }) => {
+const HeaderText = ({ text }) => {
   return (
     <View>
       <Text style={styles.text}>{text}</Text>
@@ -10,11 +11,14 @@ const HeaderTitle = ({ text }) => {
   );
 };
 
-export default HeaderTitle;
+export default HeaderText;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'Poppins_700Bold',
-    fontSize: fontSizes.lg,
+    fontFamily: 'Poppins_400Regular',
+    fontSize: fontSizes.md,
+    lineHeight: spacing.xxl,
+    marginHorizontal: 30,
+    textAlign: 'center',
   },
 });

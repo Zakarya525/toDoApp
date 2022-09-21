@@ -1,13 +1,13 @@
-import { StyleSheet, View } from "react-native";
-import Header from "../components/Header";
-import { colors } from "../utils/colors";
-import Body from "../components/Body";
-import { spacing } from "../utils/sizes";
+import { StyleSheet, View } from 'react-native';
+import DashHeader from '../components/DashHeader';
+import { colors } from '../utils/colors';
+import Body from '../components/Body';
+import { spacing } from '../utils/sizes';
 
 const Dashboard = () => {
   return (
     <View style={styles.dashboard}>
-      <Header />
+      <DashHeader />
       <Body />
     </View>
   );
@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightOrange,
   },
   text: {
-    color: "white",
+    color: 'white',
     fontSize: spacing.xxl + 2,
     lineHeight: spacing.xxxl + 4,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

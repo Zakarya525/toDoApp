@@ -1,11 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { fontSizes } from '../../utilities/sizes';
 
-const HeaderTitle = ({ text }) => {
+import React, { useContext } from 'react';
+import { fontSizes } from '../../utilities/sizes';
+import AuthContext from '../../context/Authentication/authContext';
+
+const HeaderTitle = () => {
+  const { user } = useContext(AuthContext);
   return (
     <View>
-      <Text style={styles.text}>{text}</Text>
+      <Text style={styles.text}>{user.username}</Text>
+
     </View>
   );
 };

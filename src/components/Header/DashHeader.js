@@ -6,7 +6,7 @@ const DashHeader = () => {
   return (
     <View style={styles.header}>
       <ProfileImage image='' />
-      <HeaderTitle name='Furqan' />
+      <HeaderTitle />
     </View>
   );
 };

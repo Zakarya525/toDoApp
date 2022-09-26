@@ -11,6 +11,7 @@ import Footer from '../components/Footer/Footer';
 import ButtonSecondary from '../components/Buttons/ButtonSecondary';
 import { fontSizes } from '../utilities/sizes';
 import { spacing } from '../utilities/sizes';
+import setUser from '../services/setUser';
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -27,7 +28,17 @@ const Register = () => {
   };
 
   const submitHandler = () => {
-    console.warn(inputs.name, inputs.email, inputs.password);
+
+    setUser({
+      username: inputs.name,
+      email: inputs.email,
+      password: inputs.password,
+    }).then((result) => {
+      if (result.status === 200) {
+        console.log('YOu are great Boy');
+      }
+    });
+
     setInputs({});
   };
 
@@ -41,7 +52,8 @@ const Register = () => {
           clearTextOnFocus={true}
           value={inputs.name}
           autoComplete='name'
-          placeholder='Enter your full name'
+          placeholder='Enter your username'
+
         />
 
         <TextInput
@@ -57,9 +69,16 @@ const Register = () => {
           onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
           placeholder='Enter password'
+
+          secureTextEntry
         />
 
-        <TextInput style={styles.input} placeholder='Confirm password' />
+        <TextInput
+          style={styles.input}
+          placeholder='Confirm password'
+          secureTextEntry
+        />
+
 
         <ButtonSecondary name='Register' submitHandler={submitHandler} />
       </View>

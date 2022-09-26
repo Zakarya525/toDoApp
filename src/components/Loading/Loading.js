@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import AuthContext from '../../context/Authentication/authContext';
 
-export const Loading = () => {
+const Loading = () => {
   const { isSignedIn } = React.useContext(AuthContext);
   return (
     <View>
@@ -18,3 +18,5 @@ export const Loading = () => {
     </View>
   );
 };
+
+export default Loading;

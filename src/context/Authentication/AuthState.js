@@ -1,26 +1,37 @@
 import AuthContext from './authContext';
-import getUser from '../../services/getUser';
+import getToken from '../../services/getToken';
 import AuthReducer from './authReducer';
 import { useReducer } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import getUser from '../../services/getUser';
 
 const AuthState = ({ children }) => {
   const initialState = {
     user: {},
     isSignedIn: false,
+    token: AsyncStorage.getItem('token'),
   };
-
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const signIn = (username, password) => {
-    const res = getUser({
-      username: username,
-      password: password,
-    }).then((result) => {
-      if (result.status === 200) {
-        console.log('You are successfully Logged In');
+    getToken({
+      username,
+      password,
+    }).then((res) => {
+      if (res.status === 200) {
+        AsyncStorage.setItem('token', res.data.access_token);
+        getUser({ token: res.data.access_token }).then((res) => {
+          if (res.status === 200) {
+            console.log(res.data);
+            dispatch({
+              type: 'GET_USER',
+              payload: res.data,
+            });
+          }
+        });
         dispatch({
-          type: 'GET_USER',
-          payload: res.data,
+          type: 'GET_TOKEN',
+          payload: res.data.access_token,
         });
       }
     });
@@ -31,6 +42,7 @@ const AuthState = ({ children }) => {
       value={{
         isSignedIn: state.isSignedIn,
         user: state.user,
+        token: state.token,
         signIn,
       }}>
       {children}

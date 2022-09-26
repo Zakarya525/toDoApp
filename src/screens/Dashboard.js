@@ -3,6 +3,8 @@ import DashHeader from '../components/Header/DashHeader';
 import { colors } from '../utils/colors';
 import Body from '../components/Body';
 import { spacing } from '../utils/sizes';
+import { useContext } from 'react';
+import AuthContext from '../context/Authentication/authContext';
 
 const Dashboard = () => {
   return (

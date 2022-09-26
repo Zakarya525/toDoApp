@@ -1,22 +1,19 @@
 import ApiManager from './ApiManager';
 
-export default setUser = async (data) => {
+export default getToken = async (data) => {
+  console.log(data);
   try {
-    const result = await ApiManager('/register', {
+    const result = await ApiManager('/login', {
       method: 'POST',
       headers: {
         ContentType: 'application/x-www-form-urlencoded',
       },
       data: JSON.stringify(
-        (username = data.username),
-        (email = data.email),
-        (password = data.password)
+        `grant_type=&username=${data.username}&password=${data.password}&scope=&client_id=&client_secret=`
       ),
     });
-    console.log(result);
     return result;
   } catch (error) {
-    console.log('Failed');
     console.log(error);
   }
 };

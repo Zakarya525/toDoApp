@@ -4,6 +4,11 @@ export default (state, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case 'GET_TOKEN':
+      return {
+        ...state,
+        token: action.payload,
         isSignedIn: true,
       };
   }

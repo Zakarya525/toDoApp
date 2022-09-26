@@ -5,20 +5,17 @@ import {
   Image,
   View,
 } from 'react-native';
-
-import React, { useContext, useState } from 'react';
-
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import colors from '../utilities/colors';
 import { fontSizes, spacing } from '../utilities/sizes';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import ButtonSecondary from '../components/Buttons/ButtonSecondary';
-
-import AuthContext from '../context/Authentication/authContext';
+import user_api from '../api/user_api';
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
-
+  let navigation = useNavigation();
   const [inputs, setInputs] = useState({
     username: '',
     password: '',
@@ -31,11 +28,18 @@ const Login = () => {
     });
   };
 
-
-  //will be implementing this using context
   const submitHandler = () => {
-    signIn(inputs.username, inputs.password);
-
+    user_api({
+      username: inputs.username,
+      password: inputs.password,
+    }).then((result) => {
+      console.log(result.data);
+      if (result.status === 200) {
+        navigation.replace('Dashboard');
+      }
+    });
+    setInputs({});
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior='height'>
@@ -57,9 +61,6 @@ const Login = () => {
           onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
           placeholder='Enter password'
-
-          secureTextEntry
-
         />
 
         <ButtonSecondary name='Login' submitHandler={submitHandler} />

@@ -28,6 +28,7 @@ const Register = () => {
   };
 
   const submitHandler = () => {
+
     setUser({
       username: inputs.name,
       email: inputs.email,
@@ -37,6 +38,7 @@ const Register = () => {
         console.log('YOu are great Boy');
       }
     });
+
     setInputs({});
   };
 
@@ -51,6 +53,7 @@ const Register = () => {
           value={inputs.name}
           autoComplete='name'
           placeholder='Enter your username'
+
         />
 
         <TextInput
@@ -66,6 +69,7 @@ const Register = () => {
           onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
           placeholder='Enter password'
+
           secureTextEntry
         />
 
@@ -74,6 +78,7 @@ const Register = () => {
           placeholder='Confirm password'
           secureTextEntry
         />
+
 
         <ButtonSecondary name='Register' submitHandler={submitHandler} />
       </View>

@@ -5,10 +5,18 @@ export default (state, action) => {
         ...state,
         user: action.payload,
       };
+
     case 'GET_TOKEN':
       return {
         ...state,
         token: action.payload,
+        isSignedIn: true,
+      };
+
+    case 'SET_USER':
+      return {
+        ...state,
+        user: action.payload,
         isSignedIn: true,
       };
   }

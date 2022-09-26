@@ -4,16 +4,17 @@ import {
   View,
   KeyboardAvoidingView,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import colors from '../utilities/colors';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import ButtonSecondary from '../components/Buttons/ButtonSecondary';
 import { fontSizes } from '../utilities/sizes';
 import { spacing } from '../utilities/sizes';
-import setUser from '../services/setUser';
+import AuthContext from '../context/Authentication/authContext';
 
 const Register = () => {
+  const { signUp } = useContext(AuthContext);
   const [inputs, setInputs] = useState({
     name: '',
     email: '',
@@ -28,16 +29,7 @@ const Register = () => {
   };
 
   const submitHandler = () => {
-    setUser({
-      username: inputs.name,
-      email: inputs.email,
-      password: inputs.password,
-    }).then((result) => {
-      if (result.status === 200) {
-        console.log('YOu are great Boy');
-      }
-    });
-    setInputs({});
+    signUp(inputs.name, inputs.email, inputs.password);
   };
 
   return (

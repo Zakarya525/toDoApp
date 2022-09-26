@@ -1,19 +1,20 @@
 import ApiManager from './ApiManager';
 
 export default setUser = async (data) => {
+  console.log(data);
   try {
     const result = await ApiManager('/register', {
       method: 'POST',
       headers: {
-        ContentType: 'application/x-www-form-urlencoded',
+        'Content-type': 'application/json',
       },
-      data: JSON.stringify(
-        (username = data.username),
-        (email = data.email),
-        (password = data.password)
-      ),
+      data: JSON.stringify({
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      }),
     });
-    console.log(result);
+
     return result;
   } catch (error) {
     console.log('Failed');

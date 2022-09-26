@@ -1,7 +1,6 @@
 import ApiManager from './ApiManager';
 
 export default getToken = async (data) => {
-  console.log(data);
   try {
     const result = await ApiManager('/login', {
       method: 'POST',

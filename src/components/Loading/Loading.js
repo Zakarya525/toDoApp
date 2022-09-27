@@ -1,20 +1,19 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import AuthContext from '../../context/Authentication/authContext';
+import colors from '../../utilities/colors';
 
 const Loading = () => {
-  const { isSignedIn } = React.useContext(AuthContext);
   return (
-    <View>
-      {isSignedIn && (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-          }}>
-          <ActivityIndicator color={'#000'} animating={true} size='small' />
-        </View>
-      )}
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+      }}>
+      <ActivityIndicator
+        animating={true}
+        size='large'
+        color={colors.lightOrange}
+      />
     </View>
   );
 };

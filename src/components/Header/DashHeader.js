@@ -1,12 +1,14 @@
-import { StyleSheet, View } from 'react-native';
-import HeaderTitle from './HeaderTitle';
+import { StyleSheet, View, Text } from 'react-native';
+import { useContext } from 'react';
 import { ProfileImage } from '../ProfileImage/ProfileImage';
+import AuthContext from '../../context/Authentication/authContext';
 
 const DashHeader = () => {
+  const { user } = useContext(AuthContext);
   return (
     <View style={styles.header}>
       <ProfileImage image='' />
-      <HeaderTitle />
+      <Text>{user.username}</Text>
     </View>
   );
 };

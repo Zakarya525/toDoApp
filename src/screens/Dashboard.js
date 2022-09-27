@@ -1,5 +1,4 @@
-import { StyleSheet, View } from 'react-native';
-
+import { StyleSheet, View, Text } from 'react-native';
 import DashHeader from '../components/Header/DashHeader';
 import { colors } from '../utils/colors';
 import Body from '../components/Body';

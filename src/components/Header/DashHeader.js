@@ -1,12 +1,15 @@
-import { StyleSheet, View } from 'react-native';
-import HeaderTitle from './HeaderTitle';
+import { StyleSheet, View, Text } from 'react-native';
+import { useContext } from 'react';
 import { ProfileImage } from '../ProfileImage/ProfileImage';
-
+import AuthContext from '../../context/Authentication/authContext';
+import { fontSizes } from '../../utils/sizes';
 const DashHeader = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <View style={styles.header}>
       <ProfileImage image='' />
-      <HeaderTitle name='Furqan' />
+      <Text style={styles.text}>{user.username}</Text>
     </View>
   );
 };
@@ -19,5 +22,10 @@ const styles = StyleSheet.create({
     marginTop: 30,
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+
+  text: {
+    fontFamily: 'Poppins_700Bold',
+    fontSize: fontSizes.lg,
   },
 });

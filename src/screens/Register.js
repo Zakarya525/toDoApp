@@ -4,15 +4,17 @@ import {
   View,
   KeyboardAvoidingView,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import colors from '../utilities/colors';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import ButtonSecondary from '../components/Buttons/ButtonSecondary';
 import { fontSizes } from '../utilities/sizes';
 import { spacing } from '../utilities/sizes';
+import AuthContext from '../context/Authentication/authContext';
 
 const Register = () => {
+  const { signUp } = useContext(AuthContext);
   const [inputs, setInputs] = useState({
     name: '',
     email: '',
@@ -27,8 +29,7 @@ const Register = () => {
   };
 
   const submitHandler = () => {
-    console.warn(inputs.name, inputs.email, inputs.password);
-    setInputs({});
+    signUp(inputs.name, inputs.email, inputs.password);
   };
 
   return (
@@ -41,7 +42,7 @@ const Register = () => {
           clearTextOnFocus={true}
           value={inputs.name}
           autoComplete='name'
-          placeholder='Enter your full name'
+          placeholder='Enter your username'
         />
 
         <TextInput
@@ -57,9 +58,14 @@ const Register = () => {
           onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
           placeholder='Enter password'
+          secureTextEntry
         />
 
-        <TextInput style={styles.input} placeholder='Confirm password' />
+        <TextInput
+          style={styles.input}
+          placeholder='Confirm password'
+          secureTextEntry
+        />
 
         <ButtonSecondary name='Register' submitHandler={submitHandler} />
       </View>

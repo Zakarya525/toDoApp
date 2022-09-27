@@ -5,17 +5,20 @@ import {
   Image,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+
+import React, { useContext, useState } from 'react';
+
 import colors from '../utilities/colors';
 import { fontSizes, spacing } from '../utilities/sizes';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import ButtonSecondary from '../components/Buttons/ButtonSecondary';
-import user_api from '../api/user_api';
+
+import AuthContext from '../context/Authentication/authContext';
 
 const Login = () => {
-  let navigation = useNavigation();
+  const { signIn } = useContext(AuthContext);
+
   const [inputs, setInputs] = useState({
     username: '',
     password: '',
@@ -28,17 +31,9 @@ const Login = () => {
     });
   };
 
+  //will be implementing this using context
   const submitHandler = () => {
-    user_api({
-      username: inputs.username,
-      password: inputs.password,
-    }).then((result) => {
-      console.log(result.data);
-      if (result.status === 200) {
-        navigation.replace('Dashboard');
-      }
-    });
-    setInputs({});
+    signIn(inputs.username, inputs.password);
   };
 
   return (
@@ -61,6 +56,7 @@ const Login = () => {
           onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
           placeholder='Enter password'
+          secureTextEntry
         />
 
         <ButtonSecondary name='Login' submitHandler={submitHandler} />

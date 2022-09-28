@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -23,7 +24,9 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
+
 import StackNavigation from './src/navigations/StackNavigation';
+
 export default function App() {
   let [fontsLoaded, error] = useFonts({
     Poppins_100Thin,
@@ -59,4 +62,3 @@ export default function App() {
     </AuthState>
   );
 }
-

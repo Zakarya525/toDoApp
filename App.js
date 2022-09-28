@@ -25,7 +25,7 @@ import {
 } from "@expo-google-fonts/poppins";
 
 import StackNavigation from "./src/navigations/StackNavigation";
-import CustomStatusBar from "./src/components/CustomStatusBar";
+import CustomStatusBar from "./src/components/StatusBar";
 
 export default function App() {
   let [fontsLoaded, error] = useFonts({

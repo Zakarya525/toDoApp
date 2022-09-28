@@ -1,6 +1,6 @@
 import { StatusBar } from "react-native";
 import { useContext } from "react";
-import AuthContext from "../context/Authentication/authContext";
+import AuthContext from "../../context/Authentication/authContext";
 
 const CustomStatusBar = () => {
   const { theme } = useContext(AuthContext);

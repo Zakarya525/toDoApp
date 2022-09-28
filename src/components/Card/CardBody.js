@@ -22,15 +22,3 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
 });
-
-
-function even() {
-  console.log("good")
-}
-
-function print_log(func){
-  func()
-}
-
-print_log(even)
-

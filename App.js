@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import AuthState from './src/context/Authentication/AuthState';
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import AuthState from "./src/context/Authentication/AuthState";
 import {
   Poppins_100Thin,
   Poppins_100Thin_Italic,
@@ -22,9 +22,10 @@ import {
   Poppins_800ExtraBold_Italic,
   Poppins_900Black,
   Poppins_900Black_Italic,
-} from '@expo-google-fonts/poppins';
+} from "@expo-google-fonts/poppins";
 
-import StackNavigation from './src/navigations/StackNavigation';
+import StackNavigation from "./src/navigations/StackNavigation";
+import CustomStatusBar from "./src/components/CustomStatusBar";
 
 export default function App() {
   let [fontsLoaded, error] = useFonts({
@@ -55,8 +56,8 @@ export default function App() {
   return (
     <AuthState>
       <NavigationContainer>
+        <CustomStatusBar />
         <StackNavigation />
-        <StatusBar style='auto' />
       </NavigationContainer>
     </AuthState>
   );

@@ -8,7 +8,8 @@ import {
 import { fontSizes, spacing } from "../../utils/sizes";
 import { AntDesign } from "@expo/vector-icons";
 import { colors } from "../../utils/colors";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AuthContext from "../../context/Authentication/authContext";
 
 const AddNewTaskButton = ({ onPress }) => {
   return (
@@ -35,6 +36,7 @@ const SubmitTaskButton = ({ onSubmit }) => {
 };
 
 export const CardHeader = ({ onAddNewTask }) => {
+  const { theme } = useContext(AuthContext);
   const [title, setTitle] = useState(null);
   const [isTypeInput, setIsTypeInput] = useState(false);
 
@@ -45,8 +47,32 @@ export const CardHeader = ({ onAddNewTask }) => {
   const handleSubmitNewTask = () => {
     setIsTypeInput(!isTypeInput);
     onAddNewTask(title);
-    setTitle("")
+    setTitle("");
   };
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    cardHeader: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    text: {
+      flex: 1,
+      color: theme.color,
+      fontSize: fontSizes.md,
+      fontFamily: "Poppins_500Medium",
+    },
+    input: {
+      flex: 1,
+      color: theme.color,
+      fontSize: fontSizes.md,
+      fontFamily: "Poppins_500Medium",
+    },
+  });
+
   return (
     <View style={styles.cardHeader}>
       {!isTypeInput ? (
@@ -66,26 +92,3 @@ export const CardHeader = ({ onAddNewTask }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  cardHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  text: {
-    flex: 1,
-    color: colors.lightGrey,
-    fontSize: fontSizes.md,
-    fontFamily: "Poppins_500Medium",
-  },
-  input: {
-    flex: 1,
-    color: colors.lightGrey,
-    fontSize: fontSizes.md,
-    fontFamily: "Poppins_500Medium",
-  },
-});

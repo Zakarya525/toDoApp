@@ -84,7 +84,6 @@ export function DrawerContent(props) {
           label="Sign Out"
           onPress={() => {
             logOut();
-            props.navigation.replace("SignIn");
           }}
         />
       </Drawer.Section>

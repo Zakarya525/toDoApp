@@ -6,6 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import getUser from "../../services/getUser";
 import setUser from "../../services/setUser";
 import { darkTheme, lightTheme } from "../../config/theme";
+import { createKeyboardAwareNavigator } from "react-navigation";
 
 const AuthState = ({ children }) => {
   const initialState = {
@@ -84,7 +85,7 @@ const AuthState = ({ children }) => {
     });
   };
 
-  const toggleTheme = (isDark) => {
+  const toggleTheme = async (isDark) => {
     const theme = isDark ? darkTheme : lightTheme;
     dispatch({
       type: "SET_THEME",

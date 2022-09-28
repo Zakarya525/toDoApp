@@ -5,11 +5,13 @@ import { colors } from "../../utils/colors";
 import { CardBody } from "./CardBody";
 
 import { taskList } from "../../../data/task_list";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import generateUUID from "../../utils/functions";
+import AuthContext from "../../context/Authentication/authContext";
 
 export const Card = () => {
   const [tasks, setTasks] = useState(taskList);
+  const { theme } = useContext(AuthContext);
 
   const handleOnAddNewTask = (title) => {
     const task = {
@@ -31,6 +33,16 @@ export const Card = () => {
     );
   }
 
+  const styles = StyleSheet.create({
+    card: {
+      flex: 1,
+      backgroundColor: theme.background,
+      marginVertical: spacing.xl,
+      borderRadius: spacing.md,
+      padding: spacing.lg,
+    },
+  });
+
   return (
     <View style={styles.card}>
       <CardHeader onAddNewTask={handleOnAddNewTask} />
@@ -38,16 +50,3 @@ export const Card = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    flex: 1,
-    backgroundColor: colors.white,
-    marginVertical: spacing.xl,
-    borderRadius: spacing.md,
-    padding: spacing.lg,
-  },
-  text: {
-    fontSize: fontSizes.lg,
-  },
-});

@@ -7,7 +7,6 @@ import Register from "../screens/Register";
 import Loading from "../components/Loading";
 import AuthContext from "../context/Authentication/authContext";
 import DrawerNavigation from "./DrawerNavigation";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 

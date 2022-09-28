@@ -15,7 +15,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import AuthContext from "../../context/Authentication/authContext";
 
-export function DrawerContent(props) {
+const DrawerContent = (props) => {
   const { theme, logOut, toggleTheme } = React.useContext(AuthContext);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
@@ -89,8 +89,9 @@ export function DrawerContent(props) {
       </Drawer.Section>
     </View>
   );
-}
+};
 
+export default DrawerContent;
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,

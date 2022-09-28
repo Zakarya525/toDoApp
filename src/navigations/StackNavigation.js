@@ -6,6 +6,7 @@ import Register from '../screens/Register';
 import Dashboard from '../screens/Dashboard';
 import Loading from '../components/Loading';
 import AuthContext from '../context/Authentication/authContext';
+import DrawerNavigation from './DrawerNavigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,11 +38,13 @@ const StackNavigation = () => {
           />
         </>
       ) : (
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name='Dashboard'
-          component={Dashboard}
-        />
+        <>
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name='Dashboard'
+            component={DrawerNavigation}
+          />
+        </>
       )}
     </Stack.Navigator>
   );

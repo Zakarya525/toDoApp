@@ -1,9 +1,9 @@
+import 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Splash from '../screens/Splash';
 import Login from '../screens/Login';
 import Register from '../screens/Register';
-import Dashboard from '../screens/Dashboard';
 import Loading from '../components/Loading';
 import AuthContext from '../context/Authentication/authContext';
 import DrawerNavigation from './DrawerNavigation';
@@ -41,7 +41,7 @@ const StackNavigation = () => {
         <>
           <Stack.Screen
             options={{ headerShown: false }}
-            name='Dashboard'
+            name='Home'
             component={DrawerNavigation}
           />
         </>

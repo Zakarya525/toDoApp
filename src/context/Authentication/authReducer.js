@@ -11,7 +11,7 @@ export default (state, action) => {
     case "GET_TOKEN":
       return {
         ...state,
-        token: action.payload,
+        token: action.token,
         isLoading: false,
       };
 
@@ -19,7 +19,7 @@ export default (state, action) => {
       return {
         ...state,
         user: action.payload,
-        isSignedIn: true,
+        isLoading: false,
       };
 
     case "SET_LOADING":

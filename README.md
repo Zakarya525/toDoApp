@@ -1,5 +1,5 @@
 # toDoApp
-ToDO App, using React Native and Context with Expo SDK
+**ToDO App, where you can add, delete and modify your daily Tasks.**
 
 # Prerequisit
 ```

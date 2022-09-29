@@ -5,6 +5,7 @@ import { useEffect, useReducer } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getUser from "../../services/getUser";
 import setUser from "../../services/setUser";
+import storage from "../../storage";
 
 export const AuthProvider = ({ children }) => {
   const initialState = {
@@ -23,7 +24,7 @@ export const AuthProvider = ({ children }) => {
       password,
     }).then((res) => {
       if (res.status === 200) {
-        AsyncStorage.setItem("token", res.data.access_token);
+        storage.set("token", res.data.access_token);
         dispatch({
           type: "GET_TOKEN",
           token: res.data.access_token,
@@ -69,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    AsyncStorage.removeItem("token");
+    storage.remove("token");
     dispatch({
       type: "LOGOUT",
     });

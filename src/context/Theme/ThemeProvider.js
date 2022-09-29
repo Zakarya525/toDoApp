@@ -3,6 +3,7 @@ import { useEffect, useReducer } from "react";
 import ThemeReducer from "../Theme/themeReducer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ThemeContext from "./themeContext";
+import storage from "../../storage";
 
 export const ThemeProvider = ({ children }) => {
   const initialState = {
@@ -11,8 +12,8 @@ export const ThemeProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ThemeReducer, initialState);
 
   const loadPreviousThemePreferences = async () => {
-    const themeMode = await AsyncStorage.getItem("themeMode");
-    const theme = themeMode === "dark" ? darkTheme : lightTheme;
+    const theme =
+      (await storage.get("themeMode")) === "dark" ? darkTheme : lightTheme;
     dispatch({
       type: "SET_THEME",
       payload: theme,
@@ -25,7 +26,7 @@ export const ThemeProvider = ({ children }) => {
       type: "SET_THEME",
       payload: theme,
     });
-    AsyncStorage.setItem("themeMode", theme.themeMode);
+    storage.set("themeMode", theme.themeMode);
   };
 
   useEffect(() => {

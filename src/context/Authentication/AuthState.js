@@ -16,6 +16,7 @@ const AuthState = ({ children }) => {
 
   // Get user token
   const signIn = (username, password) => {
+    console.log(username, password);
     setLoading();
     getToken({
       username,
@@ -34,31 +35,33 @@ const AuthState = ({ children }) => {
   //Get user data
   useEffect(() => {
     setLoading();
-
     const getToken = async () => await AsyncStorage.getItem('token');
 
     getToken().then((t) => {
-      getUser({ token: t }).then((res) => {
-        if (res.status === 200) {
-          dispatch({
-            type: 'GET_USER',
-            payload: res.data,
-            token: t,
-          });
-        }
-      });
+      if (t !== null) {
+        getUser({ token: t }).then((res) => {
+          if (res.status === 200) {
+            dispatch({
+              type: 'GET_USER',
+              payload: res.data,
+              token: t,
+            });
+          }
+        });
+      } else
+        dispatch({
+          type: 'GET_TOKEN',
+          token: '',
+        });
     });
   }, []);
 
   //Register a new user
   const signUp = (username, email, password) => {
+    setLoading();
     setUser({ username, email, password }).then((res) => {
       if (res.status === 200) {
-        console.log(res.data);
-        dispatch({
-          type: 'SET_USER',
-          payload: res.data,
-        });
+        signIn(username, password);
       }
     });
   };

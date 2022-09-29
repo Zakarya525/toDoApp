@@ -12,6 +12,7 @@ const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
   const { token, isLoading } = useContext(AuthContext);
+  console.log(token);
 
   if (isLoading) {
     return <Loading />;

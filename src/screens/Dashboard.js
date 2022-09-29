@@ -1,12 +1,10 @@
 import { StyleSheet, View } from "react-native";
 import DashHeader from "../components/Header/DashHeader";
-import { colors } from "../utils/colors";
 import Body from "../components/Body";
-import AuthContext from "../context/Authentication/authContext";
-import { useContext } from "react";
+import { useTheme } from "../context/Theme";
 
 const Dashboard = () => {
-  const { theme } = useContext(AuthContext);
+  const { theme } = useTheme();
 
   const styles = StyleSheet.create({
     dashboard: {

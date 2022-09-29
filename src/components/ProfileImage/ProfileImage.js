@@ -1,9 +1,8 @@
-import { Image, StyleSheet, Text } from "react-native";
-import { useContext } from "react";
-import AuthContext from "../../context/Authentication/authContext";
+import { Image, StyleSheet } from "react-native";
+import { useTheme } from "../../context/Theme";
 
 export const ProfileImage = ({ image }) => {
-  const { theme } = useContext(AuthContext);
+  const { theme } = useTheme();
 
   const styles = StyleSheet.create({
     image: {

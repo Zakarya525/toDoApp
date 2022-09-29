@@ -1,19 +1,17 @@
-import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
-import colors from '../../utilities/colors';
+import React from "react";
+import { ActivityIndicator, View } from "react-native";
+import { useTheme } from "../../context/Theme";
 
 const Loading = () => {
+  const { theme } = useTheme();
   return (
     <View
       style={{
         flex: 1,
-        justifyContent: 'center',
-      }}>
-      <ActivityIndicator
-        animating={true}
-        size='large'
-        color={colors.lightOrange}
-      />
+        justifyContent: "center",
+      }}
+    >
+      <ActivityIndicator animating={true} size="large" color={theme.color} />
     </View>
   );
 };

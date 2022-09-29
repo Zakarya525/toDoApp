@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { spacing } from '../../utilities/sizes';
-import { fontSizes } from '../../utilities/sizes';
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { fontSizes, spacing } from "../../utilities/sizes";
 
 const HeaderText = ({ text }) => {
   return (
@@ -15,10 +14,10 @@ export default HeaderText;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'Poppins_400Regular',
+    fontFamily: "Poppins_400Regular",
     fontSize: fontSizes.md,
     lineHeight: spacing.xxl,
     marginHorizontal: 30,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });

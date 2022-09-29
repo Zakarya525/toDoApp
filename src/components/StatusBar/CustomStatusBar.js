@@ -1,9 +1,8 @@
 import { StatusBar } from "react-native";
-import { useContext } from "react";
-import AuthContext from "../../context/Authentication/authContext";
+import { useTheme } from "../../context/Theme";
 
 const CustomStatusBar = () => {
-  const { theme } = useContext(AuthContext);
+  const { theme } = useTheme();
   const backgroundColor = theme.themeMode === "dark" ? "black" : "white";
   const statusBarStyle =
     theme.themeMode === "dark" ? "light-content" : "dark-content";

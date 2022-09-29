@@ -1,12 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import { fontSizes, spacing } from "../../utils/sizes";
 import Card from "../Card";
-import { colors } from "../../utils/colors";
-import AuthContext from "../../context/Authentication/authContext";
-import { useContext } from "react";
+import { useTheme } from "../../context/Theme";
 
 export const Body = () => {
-  const { theme } = useContext(AuthContext);
+  const { theme } = useTheme();
 
   const styles = StyleSheet.create({
     body: {

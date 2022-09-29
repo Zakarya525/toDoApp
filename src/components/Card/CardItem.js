@@ -3,11 +3,11 @@ import { fontSizes, spacing } from "../../utils/sizes";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../utils/colors";
 import { Audio } from "expo-av";
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../context/Authentication/authContext";
+import { useEffect, useState } from "react";
+import { useTheme } from "../../context/Theme";
 
 export const CardItem = ({ task, onPress }) => {
-  const { theme } = useContext(AuthContext);
+  const { theme } = useTheme();
   const [sound, setSound] = useState();
 
   async function onTaskItemPress(task) {

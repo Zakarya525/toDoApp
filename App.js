@@ -1,8 +1,8 @@
-import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
-import AuthState from "./src/context/Authentication/AuthState";
+import { AuthProvider } from "./src/context/Authentication";
+import { ThemeProvider } from "./src/context/Theme";
 import {
   Poppins_100Thin,
   Poppins_100Thin_Italic,
@@ -54,11 +54,13 @@ export default function App() {
   }
 
   return (
-    <AuthState>
-      <NavigationContainer>
-        <CustomStatusBar />
-        <StackNavigation />
-      </NavigationContainer>
-    </AuthState>
+    <AuthProvider>
+      <ThemeProvider>
+        <NavigationContainer>
+          <CustomStatusBar />
+          <StackNavigation />
+        </NavigationContainer>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }

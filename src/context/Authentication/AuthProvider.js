@@ -5,15 +5,12 @@ import { useEffect, useReducer } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getUser from "../../services/getUser";
 import setUser from "../../services/setUser";
-import { darkTheme, lightTheme } from "../../config/theme";
-import { createKeyboardAwareNavigator } from "react-navigation";
 
-const AuthState = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const initialState = {
     user: {},
     isLoading: false,
     token: "",
-    theme: darkTheme,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -34,21 +31,11 @@ const AuthState = ({ children }) => {
     });
   };
 
-  const loadPreviousThemePreferences = async () => {
-    const themeMode = await AsyncStorage.getItem("themeMode");
-    const theme = themeMode === "dark" ? darkTheme : lightTheme;
-    dispatch({
-      type: "SET_THEME",
-      payload: theme,
-    });
-  };
-
   const setLoading = () => dispatch({ type: "SET_LOADING" });
 
   //Get user data
   useEffect(() => {
     setLoading();
-    loadPreviousThemePreferences();
 
     const getToken = async () => await AsyncStorage.getItem("token");
 
@@ -85,15 +72,6 @@ const AuthState = ({ children }) => {
     });
   };
 
-  const toggleTheme = async (isDark) => {
-    const theme = isDark ? darkTheme : lightTheme;
-    dispatch({
-      type: "SET_THEME",
-      payload: theme,
-    });
-    AsyncStorage.setItem("themeMode", theme.themeMode);
-  };
-
   return (
     <AuthContext.Provider
       value={{
@@ -103,13 +81,9 @@ const AuthState = ({ children }) => {
         signIn,
         signUp,
         logOut,
-        theme: state.theme,
-        toggleTheme,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
-
-export default AuthState;

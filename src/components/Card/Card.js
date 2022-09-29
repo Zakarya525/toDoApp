@@ -1,17 +1,16 @@
 import { StyleSheet, View } from "react-native";
-import { fontSizes, spacing } from "../../utils/sizes";
+import { spacing } from "../../utils/sizes";
 import { CardHeader } from "./CardHeader";
-import { colors } from "../../utils/colors";
 import { CardBody } from "./CardBody";
 
 import { taskList } from "../../../data/task_list";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import generateUUID from "../../utils/functions";
-import AuthContext from "../../context/Authentication/authContext";
+import { useTheme } from "../../context/Theme";
 
 export const Card = () => {
   const [tasks, setTasks] = useState(taskList);
-  const { theme } = useContext(AuthContext);
+  const { theme } = useTheme();
 
   const handleOnAddNewTask = (title) => {
     const task = {

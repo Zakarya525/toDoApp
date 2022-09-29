@@ -5,8 +5,8 @@ import Splash from "../screens/Splash";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Loading from "../components/Loading";
-import AuthContext from "../context/Authentication/authContext";
 import DrawerNavigation from "./DrawerNavigation";
+import AuthContext from "../context/Authentication/authContext";
 
 const Stack = createNativeStackNavigator();
 

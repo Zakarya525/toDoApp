@@ -13,10 +13,12 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import AuthContext from "../../context/Authentication/authContext";
+import { useAuth } from "../../context/Authentication";
+import { useTheme } from "../../context/Theme";
 
 const DrawerContent = (props) => {
-  const { theme, logOut, toggleTheme } = React.useContext(AuthContext);
+  const { logOut } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   function handleSwitchDarkTheme(isDark) {

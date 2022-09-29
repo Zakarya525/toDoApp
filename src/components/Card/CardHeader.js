@@ -8,8 +8,8 @@ import {
 import { fontSizes, spacing } from "../../utils/sizes";
 import { AntDesign } from "@expo/vector-icons";
 import { colors } from "../../utils/colors";
-import { useContext, useState } from "react";
-import AuthContext from "../../context/Authentication/authContext";
+import { useState } from "react";
+import { useTheme } from "../../context/Theme";
 
 const AddNewTaskButton = ({ onPress }) => {
   return (
@@ -36,7 +36,7 @@ const SubmitTaskButton = ({ onSubmit }) => {
 };
 
 export const CardHeader = ({ onAddNewTask }) => {
-  const { theme } = useContext(AuthContext);
+  const { theme } = useTheme();
   const [title, setTitle] = useState(null);
   const [isTypeInput, setIsTypeInput] = useState(false);
 

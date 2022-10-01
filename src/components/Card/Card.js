@@ -1,15 +1,16 @@
 import { StyleSheet, View } from "react-native";
-import { fontSizes, spacing } from "../../utils/sizes";
+import { spacing } from "../../utils/sizes";
 import { CardHeader } from "./CardHeader";
-import { colors } from "../../utils/colors";
 import { CardBody } from "./CardBody";
 
 import { taskList } from "../../../data/task_list";
 import { useState } from "react";
 import generateUUID from "../../utils/functions";
+import { useTheme } from "../../context/Theme";
 
 export const Card = () => {
   const [tasks, setTasks] = useState(taskList);
+  const { theme } = useTheme();
 
   const handleOnAddNewTask = (title) => {
     const task = {
@@ -31,6 +32,16 @@ export const Card = () => {
     );
   }
 
+  const styles = StyleSheet.create({
+    card: {
+      flex: 1,
+      backgroundColor: theme.background,
+      marginVertical: spacing.xl,
+      borderRadius: spacing.md,
+      padding: spacing.lg,
+    },
+  });
+
   return (
     <View style={styles.card}>
       <CardHeader onAddNewTask={handleOnAddNewTask} />
@@ -38,16 +49,3 @@ export const Card = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    flex: 1,
-    backgroundColor: colors.white,
-    marginVertical: spacing.xl,
-    borderRadius: spacing.md,
-    padding: spacing.lg,
-  },
-  text: {
-    fontSize: fontSizes.lg,
-  },
-});

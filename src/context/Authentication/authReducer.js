@@ -1,6 +1,6 @@
 export default (state, action) => {
   switch (action.type) {
-    case 'GET_USER':
+    case "GET_USER":
       return {
         ...state,
         user: action.payload,
@@ -8,24 +8,37 @@ export default (state, action) => {
         isLoading: false,
       };
 
-    case 'GET_TOKEN':
+    case "GET_TOKEN":
       return {
         ...state,
-        token: action.payload,
+        token: action.token,
         isLoading: false,
       };
 
-    case 'SET_USER':
+    case "SET_USER":
       return {
         ...state,
         user: action.payload,
-        isSignedIn: true,
+        isLoading: false,
       };
 
-    case 'SET_LOADING':
+    case "SET_LOADING":
       return {
         ...state,
         isLoading: true,
+      };
+
+    case "SET_THEME":
+      return {
+        ...state,
+        theme: action.payload,
+      };
+
+    case "LOGOUT":
+      return {
+        ...state,
+        isLoading: false,
+        token: "",
       };
   }
 };

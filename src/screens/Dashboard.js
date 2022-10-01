@@ -1,10 +1,18 @@
-import { StyleSheet, View, Text } from 'react-native';
-import DashHeader from '../components/Header/DashHeader';
-import { colors } from '../utils/colors';
-import Body from '../components/Body';
-import { spacing } from '../utils/sizes';
+import { StyleSheet, View } from "react-native";
+import DashHeader from "../components/Header/DashHeader";
+import Body from "../components/Body";
+import { useTheme } from "../context/Theme";
 
 const Dashboard = () => {
+  const { theme } = useTheme();
+
+  const styles = StyleSheet.create({
+    dashboard: {
+      flex: 1,
+      backgroundColor: theme.header.background,
+    },
+  });
+
   return (
     <View style={styles.dashboard}>
       <DashHeader />
@@ -14,17 +22,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-const styles = StyleSheet.create({
-  dashboard: {
-    flex: 1,
-    backgroundColor: colors.lightOrange,
-  },
-  text: {
-    color: 'white',
-    fontSize: spacing.xxl + 2,
-    lineHeight: spacing.xxxl + 4,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});

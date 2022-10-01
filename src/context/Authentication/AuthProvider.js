@@ -1,16 +1,17 @@
-import AuthContext from './authContext';
-import getToken from '../../services/getToken';
-import AuthReducer from './authReducer';
-import { useReducer, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import getUser from '../../services/getUser';
-import setUser from '../../services/setUser';
+import AuthContext from "./authContext";
+import getToken from "../../services/getToken";
+import AuthReducer from "./authReducer";
+import { useEffect, useReducer } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import getUser from "../../services/getUser";
+import setUser from "../../services/setUser";
+import storage from "../../storage";
 
-const AuthState = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const initialState = {
     user: {},
     isLoading: false,
-    token: '',
+    token: "",
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -23,26 +24,28 @@ const AuthState = ({ children }) => {
       password,
     }).then((res) => {
       if (res.status === 200) {
-        AsyncStorage.setItem('token', res.data.access_token);
+        storage.set("token", res.data.access_token);
         dispatch({
-          type: 'GET_TOKEN',
+          type: "GET_TOKEN",
           token: res.data.access_token,
         });
       }
     });
   };
 
+  const setLoading = () => dispatch({ type: "SET_LOADING" });
+
   //Get user data
   useEffect(() => {
     setLoading();
-    const getToken = async () => await AsyncStorage.getItem('token');
+    const getToken = async () => await AsyncStorage.getItem("token");
 
     getToken().then((t) => {
       if (t !== null) {
         getUser({ token: t }).then((res) => {
           if (res.status === 200) {
             dispatch({
-              type: 'GET_USER',
+              type: "GET_USER",
               payload: res.data,
               token: t,
             });
@@ -50,8 +53,8 @@ const AuthState = ({ children }) => {
         });
       } else
         dispatch({
-          type: 'GET_TOKEN',
-          token: '',
+          type: "GET_TOKEN",
+          token: "",
         });
     });
   }, []);
@@ -66,7 +69,12 @@ const AuthState = ({ children }) => {
     });
   };
 
-  const setLoading = () => dispatch({ type: 'SET_LOADING' });
+  const logOut = () => {
+    storage.remove("token");
+    dispatch({
+      type: "LOGOUT",
+    });
+  };
 
   return (
     <AuthContext.Provider
@@ -76,10 +84,10 @@ const AuthState = ({ children }) => {
         token: state.token,
         signIn,
         signUp,
-      }}>
+        logOut,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
-
-export default AuthState;

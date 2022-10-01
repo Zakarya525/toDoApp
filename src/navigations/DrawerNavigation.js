@@ -1,14 +1,16 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import Dashboard from '../screens/Dashboard';
-import Profile from '../screens/Profile';
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import Dashboard from "../screens/Dashboard";
+import DrawerContent from "../components/Drawer/DrawerContent";
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   return (
-    <Drawer.Navigator initialRouteName='Dashboard'>
-      <Drawer.Screen name='Dashboard' component={Dashboard} />
-      <Drawer.Screen name='Profile' component={Profile} />
+    <Drawer.Navigator
+      initialRouteName="Dashboard"
+      drawerContent={(props) => <DrawerContent {...props} />}
+    >
+      <Drawer.Screen name="Dashboard" component={Dashboard} />
     </Drawer.Navigator>
   );
 };

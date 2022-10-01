@@ -1,9 +1,8 @@
-import { darkTheme, lightTheme } from "../../config/theme";
-import { useEffect, useReducer } from "react";
-import ThemeReducer from "../Theme/themeReducer";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import ThemeContext from "./themeContext";
-import storage from "../../storage";
+import { darkTheme, lightTheme } from '../../config/theme';
+import { useEffect, useReducer } from 'react';
+import ThemeReducer from '../Theme/themeReducer';
+import ThemeContext from './themeContext';
+import storage from '../../storage';
 
 export const ThemeProvider = ({ children }) => {
   const initialState = {
@@ -13,9 +12,9 @@ export const ThemeProvider = ({ children }) => {
 
   const loadPreviousThemePreferences = async () => {
     const theme =
-      (await storage.get("themeMode")) === "dark" ? darkTheme : lightTheme;
+      (await storage.get('themeMode')) === 'dark' ? darkTheme : lightTheme;
     dispatch({
-      type: "SET_THEME",
+      type: 'SET_THEME',
       payload: theme,
     });
   };
@@ -23,10 +22,10 @@ export const ThemeProvider = ({ children }) => {
   const toggleTheme = async (isDark) => {
     const theme = isDark ? darkTheme : lightTheme;
     dispatch({
-      type: "SET_THEME",
+      type: 'SET_THEME',
       payload: theme,
     });
-    storage.set("themeMode", theme.themeMode);
+    storage.set('themeMode', theme.themeMode);
   };
 
   useEffect(() => {
@@ -38,8 +37,7 @@ export const ThemeProvider = ({ children }) => {
       value={{
         theme: state.theme,
         toggleTheme,
-      }}
-    >
+      }}>
       {children}
     </ThemeContext.Provider>
   );

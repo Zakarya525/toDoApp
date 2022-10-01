@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import {
   Avatar,
   Caption,
@@ -8,17 +8,17 @@ import {
   Text,
   Title,
   TouchableRipple,
-} from "react-native-paper";
-import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+} from 'react-native-paper';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { useAuth } from "../../context/Authentication";
-import { useTheme } from "../../context/Theme";
-import { createStyle } from "./Style";
+import { useAuth } from '../../context/Authentication';
+import { useTheme } from '../../context/Theme';
+import { createStyle } from './Style';
 
 const DrawerContent = (props) => {
-  const { logOut } = useAuth();
+  const { logOut, user } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const styles = createStyle(theme);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -29,7 +29,7 @@ const DrawerContent = (props) => {
   }
 
   useEffect(() => {
-    setIsDarkTheme(theme.themeMode === "dark");
+    setIsDarkTheme(theme.themeMode === 'dark');
   }, []);
 
   return (
@@ -37,14 +37,14 @@ const DrawerContent = (props) => {
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
-            <View style={{ flexDirection: "row", marginTop: 15 }}>
+            <View style={{ flexDirection: 'row', marginTop: 15 }}>
               <Avatar.Image
-                source={require("../../../assets/dummy_image.jpg")}
+                source={require('../../../assets/dummy_image.jpg')}
                 size={50}
               />
-              <View style={{ marginLeft: 15, flexDirection: "column" }}>
-                <Title style={styles.title}>John Doe</Title>
-                <Caption style={styles.caption}>zaki@gmail.com</Caption>
+              <View style={{ marginLeft: 15, flexDirection: 'column' }}>
+                <Title style={styles.title}>{user.username}</Title>
+                <Caption style={styles.caption}>{user.email}</Caption>
               </View>
             </View>
           </View>
@@ -52,25 +52,24 @@ const DrawerContent = (props) => {
           <Drawer.Section style={styles.drawerSection}>
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="home-outline" color={color} size={size} />
+                <Icon name='home-outline' color={color} size={size} />
               )}
-              label="Home"
+              label='Home'
               onPress={() => {
-                props.navigation.navigate("Home");
+                props.navigation.navigate('Home');
               }}
             />
           </Drawer.Section>
-          <Drawer.Section title="Preferences">
+          <Drawer.Section title='Preferences'>
             <TouchableRipple
               onPress={() => {
                 handleSwitchDarkTheme();
-              }}
-            >
+              }}>
               <View style={styles.preference}>
                 <Text>Dark Theme</Text>
                 <View>
                   <Switch
-                    color="black"
+                    color='black'
                     value={isDarkTheme}
                     onValueChange={handleSwitchDarkTheme}
                   />
@@ -83,9 +82,9 @@ const DrawerContent = (props) => {
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
           icon={({ color, size }) => (
-            <Icon name="exit-to-app" color={color} size={size} />
+            <Icon name='exit-to-app' color={color} size={size} />
           )}
-          label="Sign Out"
+          label='Sign Out'
           onPress={() => {
             logOut();
           }}

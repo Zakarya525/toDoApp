@@ -1,17 +1,17 @@
-import AuthContext from "./authContext";
-import getToken from "../../services/getToken";
-import AuthReducer from "./authReducer";
-import { useEffect, useReducer } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import getUser from "../../services/getUser";
-import setUser from "../../services/setUser";
-import storage from "../../storage";
+import AuthContext from './authContext';
+import getToken from '../../services/getToken';
+import AuthReducer from './authReducer';
+import { useEffect, useReducer } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import getUser from '../../services/getUser';
+import setUser from '../../services/setUser';
+import storage from '../../storage';
 
 export const AuthProvider = ({ children }) => {
   const initialState = {
     user: {},
     isLoading: false,
-    token: "",
+    token: '',
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -24,28 +24,33 @@ export const AuthProvider = ({ children }) => {
       password,
     }).then((res) => {
       if (res.status === 200) {
-        storage.set("token", res.data.access_token);
-        dispatch({
-          type: "GET_TOKEN",
-          token: res.data.access_token,
+        storage.set('token', res.data.access_token);
+        getUser({ token: res.data.access_token }).then((res) => {
+          if (res.status === 200) {
+            dispatch({
+              type: 'GET_USER',
+              token: res.data.access_token,
+              payload: res.data,
+            });
+          }
         });
       }
     });
   };
 
-  const setLoading = () => dispatch({ type: "SET_LOADING" });
+  const setLoading = () => dispatch({ type: 'SET_LOADING' });
 
   //Get user data
   useEffect(() => {
     setLoading();
-    const getToken = async () => await AsyncStorage.getItem("token");
+    const getToken = async () => await AsyncStorage.getItem('token');
 
     getToken().then((t) => {
       if (t !== null) {
         getUser({ token: t }).then((res) => {
           if (res.status === 200) {
             dispatch({
-              type: "GET_USER",
+              type: 'GET_USER',
               payload: res.data,
               token: t,
             });
@@ -53,8 +58,8 @@ export const AuthProvider = ({ children }) => {
         });
       } else
         dispatch({
-          type: "GET_TOKEN",
-          token: "",
+          type: 'GET_TOKEN',
+          token: '',
         });
     });
   }, []);
@@ -70,9 +75,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    storage.remove("token");
+    storage.remove('token');
     dispatch({
-      type: "LOGOUT",
+      type: 'LOGOUT',
     });
   };
 
@@ -85,8 +90,7 @@ export const AuthProvider = ({ children }) => {
         signIn,
         signUp,
         logOut,
-      }}
-    >
+      }}>
       {children}
     </AuthContext.Provider>
   );

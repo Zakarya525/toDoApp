@@ -1,23 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
-import { fontSizes, spacing } from "../../utils/sizes";
+import { Text, View } from "react-native";
 import Card from "../Card";
 import { useTheme } from "../../context/Theme";
+import { createStyle } from "./Styles";
 
 export const Body = () => {
-  const { theme } = useTheme();
-
-  const styles = StyleSheet.create({
-    body: {
-      flex: 1,
-      backgroundColor: theme.background,
-      padding: spacing.md,
-    },
-    text: {
-      fontSize: fontSizes.lg,
-      color: theme.color,
-      fontFamily: "Poppins_400Regular",
-    },
-  });
+  const styles = createStyle(useTheme());
 
   return (
     <View style={styles.body}>

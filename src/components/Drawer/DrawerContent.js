@@ -15,10 +15,12 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { useAuth } from "../../context/Authentication";
 import { useTheme } from "../../context/Theme";
+import { createStyle } from "./Style";
 
 const DrawerContent = (props) => {
   const { logOut } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const styles = createStyle(theme);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   function handleSwitchDarkTheme(isDark) {
@@ -94,49 +96,3 @@ const DrawerContent = (props) => {
 };
 
 export default DrawerContent;
-const styles = StyleSheet.create({
-  drawerContent: {
-    flex: 1,
-  },
-  userInfoSection: {
-    paddingLeft: 20,
-  },
-  title: {
-    fontSize: 16,
-    marginTop: 3,
-    fontWeight: "bold",
-  },
-  caption: {
-    fontSize: 14,
-    lineHeight: 14,
-  },
-  row: {
-    marginTop: 20,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  section: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginRight: 15,
-  },
-  paragraph: {
-    fontWeight: "bold",
-    marginRight: 3,
-  },
-  drawerSection: {
-    marginTop: 15,
-  },
-  bottomDrawerSection: {
-    marginBottom: 15,
-    borderTopColor: "#f4f4f4",
-    borderTopWidth: 1,
-  },
-  preference: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-  },
-});

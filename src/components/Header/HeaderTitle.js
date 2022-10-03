@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { fontSizes } from "../../utilities/sizes";
+import { fontSizes } from "@utils";
 
 const HeaderTitle = ({ text }) => {
   return (

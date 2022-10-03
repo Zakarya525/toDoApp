@@ -8,13 +8,12 @@ import {
 
 import React, { useContext, useState } from "react";
 
-import colors from "../utilities/colors";
-import { fontSizes, spacing } from "../utilities/sizes";
+import { fontSizes, spacing, colors } from "@utils";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import ButtonSecondary from "../components/Buttons/ButtonSecondary";
+import ButtonSecondary from "@components/Buttons/ButtonSecondary";
 
-import { useAuth } from "../context/Authentication";
+import { useAuth } from "@context/Authentication";
 
 const Login = () => {
   const { signIn } = useAuth();

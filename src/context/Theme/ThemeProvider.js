@@ -1,9 +1,8 @@
-import { darkTheme, lightTheme } from "../../config/theme";
+import { darkTheme, lightTheme } from "@config/theme";
 import { useEffect, useReducer } from "react";
 import ThemeReducer from "../Theme/themeReducer";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import ThemeContext from "./themeContext";
-import storage from "../../storage";
+import storage from "@app/storage";
 
 export const ThemeProvider = ({ children }) => {
   const initialState = {

@@ -13,8 +13,8 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import { useAuth } from "../../context/Authentication";
-import { useTheme } from "../../context/Theme";
+import { useAuth } from "@context/Authentication";
+import { useTheme } from "@context/Theme";
 import { createStyle } from "./Style";
 
 const DrawerContent = (props) => {

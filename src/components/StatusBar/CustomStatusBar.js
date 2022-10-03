@@ -1,5 +1,5 @@
 import { StatusBar } from "react-native";
-import { useTheme } from "../../context/Theme";
+import { useTheme } from "@context/Theme";
 
 const CustomStatusBar = () => {
   const { theme } = useTheme();

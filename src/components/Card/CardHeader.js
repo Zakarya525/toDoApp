@@ -5,11 +5,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { fontSizes, spacing } from "../../utils/sizes";
 import { AntDesign } from "@expo/vector-icons";
-import { colors } from "../../utils/colors";
+import { colors, fontSizes, spacing } from "@utils";
 import { useState } from "react";
-import { useTheme } from "../../context/Theme";
+import { useTheme } from "@context/Theme";
 
 const AddNewTaskButton = ({ onPress }) => {
   return (

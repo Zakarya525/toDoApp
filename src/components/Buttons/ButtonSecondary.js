@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native';
-import React from 'react';
-import colors from '../../utilities/colors';
-import { fontSizes } from '../../utilities/sizes';
+import { StyleSheet, Text, View, Pressable } from "react-native";
+import React from "react";
+import { createStyle } from "./Style";
+import { useTheme } from "@context/Theme";
 
 const ButtonSecondary = ({ name, submitHandler }) => {
+  const { theme } = useTheme();
+  const styles = createStyle(theme);
   return (
     <View>
       <Pressable style={styles.button} onPress={submitHandler}>
@@ -14,22 +16,3 @@ const ButtonSecondary = ({ name, submitHandler }) => {
 };
 
 export default ButtonSecondary;
-
-const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 320,
-    height: 50,
-    marginTop: 20,
-    marginBottom: 20,
-    borderRadius: 5,
-    backgroundColor: colors.offLightOrange,
-  },
-
-  btnText: {
-    fontFamily: 'Poppins_400Regular',
-    fontSize: fontSizes.md,
-    color: colors.white,
-  },
-});

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import {
   Avatar,
   Caption,
@@ -18,7 +18,7 @@ import { useTheme } from "@context/Theme";
 import { createStyle } from "./Style";
 
 const DrawerContent = (props) => {
-  const { logOut } = useAuth();
+  const { logOut, user } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const styles = createStyle(theme);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -43,8 +43,8 @@ const DrawerContent = (props) => {
                 size={50}
               />
               <View style={{ marginLeft: 15, flexDirection: "column" }}>
-                <Title style={styles.title}>John Doe</Title>
-                <Caption style={styles.caption}>zaki@gmail.com</Caption>
+                <Title style={styles.title}>{user.username}</Title>
+                <Caption style={styles.caption}>{user.email}</Caption>
               </View>
             </View>
           </View>

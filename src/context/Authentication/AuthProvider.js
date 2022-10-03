@@ -1,14 +1,25 @@
+<<<<<<< HEAD
 import AuthContext from "./authContext";
 import AuthReducer from "./authReducer";
 import { useEffect, useReducer } from "react";
 import storage from "../../storage";
 import { getUserMe, loginUser, registerUser } from "@services/user/api";
+=======
+import AuthContext from './authContext';
+import getToken from '../../services/getToken';
+import AuthReducer from './authReducer';
+import { useEffect, useReducer } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import getUser from '../../services/getUser';
+import setUser from '../../services/setUser';
+import storage from '../../storage';
+>>>>>>> master
 
 export const AuthProvider = ({ children }) => {
   const initialState = {
     user: {},
     isLoading: false,
-    token: "",
+    token: '',
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -26,11 +37,12 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  const setLoading = () => dispatch({ type: "SET_LOADING" });
+  const setLoading = () => dispatch({ type: 'SET_LOADING' });
 
   //Get user data
   useEffect(() => {
     setLoading();
+<<<<<<< HEAD
     storage.get("token").then((token) => {
       getUserMe(token).then((res) => {
         if (res.status === 200) {
@@ -41,6 +53,26 @@ export const AuthProvider = ({ children }) => {
           });
         }
       });
+=======
+    const getToken = async () => await AsyncStorage.getItem('token');
+
+    getToken().then((t) => {
+      if (t !== null) {
+        getUser({ token: t }).then((res) => {
+          if (res.status === 200) {
+            dispatch({
+              type: 'GET_USER',
+              payload: res.data,
+              token: t,
+            });
+          }
+        });
+      } else
+        dispatch({
+          type: 'GET_TOKEN',
+          token: '',
+        });
+>>>>>>> master
     });
   }, []);
 
@@ -55,9 +87,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    storage.remove("token");
+    storage.remove('token');
     dispatch({
-      type: "LOGOUT",
+      type: 'LOGOUT',
     });
   };
 
@@ -70,8 +102,7 @@ export const AuthProvider = ({ children }) => {
         signIn,
         signUp,
         logOut,
-      }}
-    >
+      }}>
       {children}
     </AuthContext.Provider>
   );

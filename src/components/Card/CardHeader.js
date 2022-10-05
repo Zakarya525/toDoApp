@@ -4,18 +4,19 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-} from "react-native";
-import { fontSizes, spacing } from "../../utils/sizes";
-import { AntDesign } from "@expo/vector-icons";
-import { colors } from "../../utils/colors";
-import { useState } from "react";
-import { useTheme } from "../../context/Theme";
+} from 'react-native';
+import { fontSizes, spacing } from '../../utils/sizes';
+import { AntDesign } from '@expo/vector-icons';
+import { colors } from '../../utils/colors';
+import { useState } from 'react';
+import { useTheme } from '../../context/Theme';
+import { createStyle } from './Styles';
 
 const AddNewTaskButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={() => onPress()}>
       <AntDesign
-        name="pluscircleo"
+        name='pluscircleo'
         size={spacing.lg}
         color={colors.addBtnColor}
       />
@@ -27,7 +28,7 @@ const SubmitTaskButton = ({ onSubmit }) => {
   return (
     <TouchableOpacity onPress={() => onSubmit()}>
       <AntDesign
-        name="checkcircle"
+        name='checkcircle'
         size={spacing.lg}
         color={colors.addBtnColor}
       />
@@ -36,7 +37,7 @@ const SubmitTaskButton = ({ onSubmit }) => {
 };
 
 export const CardHeader = ({ onAddNewTask }) => {
-  const { theme } = useTheme();
+  const styles = createStyle(useTheme());
   const [title, setTitle] = useState(null);
   const [isTypeInput, setIsTypeInput] = useState(false);
 
@@ -47,31 +48,8 @@ export const CardHeader = ({ onAddNewTask }) => {
   const handleSubmitNewTask = () => {
     setIsTypeInput(!isTypeInput);
     onAddNewTask(title);
-    setTitle("");
+    setTitle('');
   };
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    cardHeader: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
-    text: {
-      flex: 1,
-      color: theme.color,
-      fontSize: fontSizes.md,
-      fontFamily: "Poppins_500Medium",
-    },
-    input: {
-      flex: 1,
-      color: theme.color,
-      fontSize: fontSizes.md,
-      fontFamily: "Poppins_500Medium",
-    },
-  });
 
   return (
     <View style={styles.cardHeader}>
@@ -79,7 +57,7 @@ export const CardHeader = ({ onAddNewTask }) => {
         <Text style={styles.text}>Daily Tasks</Text>
       ) : (
         <TextInput
-          placeholder="What is on your mind?"
+          placeholder='What is on your mind?'
           style={styles.input}
           onChangeText={(text) => setTitle(text)}
         />

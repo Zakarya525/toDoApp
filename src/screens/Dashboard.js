@@ -1,17 +1,12 @@
-import { StyleSheet, View } from "react-native";
-import DashHeader from "../components/Header/DashHeader";
-import Body from "../components/Body";
-import { useTheme } from "../context/Theme";
+import { StyleSheet, View } from 'react-native';
+import DashHeader from '../components/Header/DashHeader';
+import Body from '../components/Body';
+import { useTheme } from '../context/Theme';
+import { createStyle } from './Styles';
 
 const Dashboard = () => {
   const { theme } = useTheme();
-
-  const styles = StyleSheet.create({
-    dashboard: {
-      flex: 1,
-      backgroundColor: theme.header.background,
-    },
-  });
+  const styles = createStyle(theme);
 
   return (
     <View style={styles.dashboard}>

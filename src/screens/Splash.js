@@ -3,8 +3,11 @@ import Header from '../components/Header/Header';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../utilities/colors';
 import ButtonSecondary from '../components/Buttons/ButtonSecondary';
+import { createStyle } from './Styles';
+import { useTheme } from '../context/Theme';
 
 const Splash = () => {
+  const styles = createStyle(useTheme());
   let navigation = useNavigation();
 
   const submitHandler = () => {
@@ -26,19 +29,3 @@ const Splash = () => {
 };
 
 export default Splash;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.offWhite,
-  },
-
-  img: {
-    width: 250,
-    height: 200,
-    opacity: 0.9,
-  },
-});

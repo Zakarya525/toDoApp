@@ -1,16 +1,18 @@
-import { StyleSheet, View } from "react-native";
-import { spacing } from "../../utils/sizes";
-import { CardHeader } from "./CardHeader";
-import { CardBody } from "./CardBody";
+import { StyleSheet, View } from 'react-native';
+import { spacing } from '../../utils/sizes';
+import { CardHeader } from './CardHeader';
+import { CardBody } from './CardBody';
 
-import { taskList } from "../../../data/task_list";
-import { useState } from "react";
-import generateUUID from "../../utils/functions";
-import { useTheme } from "../../context/Theme";
+import { taskList } from '../../../data/task_list';
+import { useState } from 'react';
+import generateUUID from '../../utils/functions';
+import { useTheme } from '../../context/Theme';
+import { createStyle } from './Styles';
 
 export const Card = () => {
   const [tasks, setTasks] = useState(taskList);
   const { theme } = useTheme();
+  const styles = createStyle(theme);
 
   const handleOnAddNewTask = (title) => {
     const task = {
@@ -31,16 +33,6 @@ export const Card = () => {
       })
     );
   }
-
-  const styles = StyleSheet.create({
-    card: {
-      flex: 1,
-      backgroundColor: theme.background,
-      marginVertical: spacing.xl,
-      borderRadius: spacing.md,
-      padding: spacing.lg,
-    },
-  });
 
   return (
     <View style={styles.card}>

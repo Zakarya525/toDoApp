@@ -1,9 +1,12 @@
-import { StyleSheet, View } from "react-native";
-import React from "react";
-import HeaderTitle from "./HeaderTitle";
-import HeaderText from "./HeaderText";
+import { View } from 'react-native';
+import React from 'react';
+import HeaderTitle from './HeaderTitle';
+import HeaderText from './HeaderText';
+import { createStyle } from './Styles';
+import { useTheme } from 'react-navigation';
 
 const Header = ({ title, text }) => {
+  const styles = createStyle(useTheme());
   return (
     <View style={styles.header}>
       <HeaderTitle text={title} />
@@ -13,13 +16,3 @@ const Header = ({ title, text }) => {
 };
 
 export default Header;
-
-const styles = StyleSheet.create({
-  header: {
-    flex: 0.35,
-    width: "100%",
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-  },
-});

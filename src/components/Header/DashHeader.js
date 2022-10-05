@@ -1,30 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
-import { ProfileImage } from "../ProfileImage/ProfileImage";
-import { fontSizes } from "../../utils/sizes";
-import { useTheme } from "../../context/Theme";
-import { useAuth } from "../../context/Authentication";
+import { Text, View } from 'react-native';
+import { ProfileImage } from '../ProfileImage/ProfileImage';
+import { useTheme } from '../../context/Theme';
+import { useAuth } from '../../context/Authentication';
+import { createStyle } from './Styles';
 
 const DashHeader = () => {
   const { user } = useAuth();
   const { theme } = useTheme();
+  const styles = createStyle(theme);
 
-  const styles = StyleSheet.create({
-    header: {
-      flex: 0.6,
-      marginTop: 30,
-      alignItems: "center",
-      justifyContent: "flex-end",
-    },
-    text: {
-      color: theme.color,
-      fontFamily: "Poppins_700Bold",
-      fontSize: fontSizes.lg,
-    },
-  });
   return (
-    <View style={styles.header}>
-      <ProfileImage image="" />
-      <Text style={styles.text}>{user.username}</Text>
+    <View style={styles.DashboardHeader}>
+      <ProfileImage image='' />
+      <Text style={styles.textLarge}>{user.username}</Text>
     </View>
   );
 };

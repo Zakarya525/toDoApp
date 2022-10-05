@@ -5,11 +5,10 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import colors from "../utilities/colors";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import ButtonSecondary from "../components/Buttons/ButtonSecondary";
-import { fontSizes, spacing } from "../utilities/sizes";
+import Header from "@components/Header/Header";
+import Footer from "@components/Footer/Footer";
+import ButtonSecondary from "@components/Buttons/ButtonSecondary";
+import { fontSizes, spacing, colors } from "@utils";
 import { useAuth } from "../context/Authentication";
 
 const Register = () => {

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { fontSizes, spacing } from "../../utilities/sizes";
+import { fontSizes, spacing } from "@utils";
 
 const HeaderText = ({ text }) => {
   return (

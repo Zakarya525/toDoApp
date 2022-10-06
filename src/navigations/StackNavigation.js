@@ -1,12 +1,12 @@
-import "react-native-gesture-handler";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React, { useContext } from "react";
-import Splash from "@screens/Splash";
-import Login from "@screens/Login";
-import Register from "@screens/Register";
-import Loading from "@components/Loading";
-import DrawerNavigation from "./DrawerNavigation";
-import { useAuth } from "@context/Authentication";
+import 'react-native-gesture-handler';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useContext } from 'react';
+import Splash from '@screens/Splash';
+import Login from '@screens/Login';
+import Register from '@screens/Register';
+import Loading from '@components/Loading';
+import DrawerNavigation from './DrawerNavigation';
+import { useAuth } from '@context/Authentication';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,31 +19,15 @@ const StackNavigation = () => {
 
   return (
     <Stack.Navigator initialRouteName="Splash">
-      {token === "" ? (
+      {token === '' ? (
         <>
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Splash"
-            component={Splash}
-          />
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Sign Up"
-            component={Register}
-          />
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Sign In"
-            component={Login}
-          />
+          <Stack.Screen options={{ headerShown: false }} name="Splash" component={Splash} />
+          <Stack.Screen options={{ headerShown: false }} name="Sign Up" component={Register} />
+          <Stack.Screen options={{ headerShown: false }} name="Sign In" component={Login} />
         </>
       ) : (
         <>
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Home"
-            component={DrawerNavigation}
-          />
+          <Stack.Screen options={{ headerShown: false }} name="Home" component={DrawerNavigation} />
         </>
       )}
     </Stack.Navigator>

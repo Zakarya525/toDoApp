@@ -15,13 +15,13 @@ const Splash = () => {
   return (
     <View style={styles.container}>
       <Header
-        title='Get things done with TODo'
-        text='An app that makes you timetable easy for you'
+        title="Get things done with TODo"
+        text="An app that makes you timetable easy for you"
       />
 
       <Image style={styles.img} source={require('../imgs/manWithMob.jpg')} />
 
-      <ButtonSecondary name='Get Started' submitHandler={submitHandler} />
+      <ButtonSecondary name="Get Started" submitHandler={submitHandler} />
     </View>
   );
 };

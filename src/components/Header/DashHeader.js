@@ -11,7 +11,7 @@ const DashHeader = () => {
 
   return (
     <View style={styles.DashboardHeader}>
-      <ProfileImage image='' />
+      <ProfileImage image="" />
       <Text style={styles.textLarge}>{user.username}</Text>
     </View>
   );

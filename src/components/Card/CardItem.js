@@ -13,9 +13,7 @@ export const CardItem = ({ task, onPress }) => {
   async function onTaskItemPress(task) {
     onPress(task.id);
     if (!task.completed) return;
-    const { sound } = await Audio.Sound.createAsync(
-      require('../../../assets/done.mp3')
-    );
+    const { sound } = await Audio.Sound.createAsync(require('../../../assets/done.mp3'));
     setSound(sound);
 
     await sound.playAsync();
@@ -30,17 +28,14 @@ export const CardItem = ({ task, onPress }) => {
   }, [sound]);
 
   return (
-    <TouchableOpacity
-      style={styles.cardItem}
-      onPress={() => onTaskItemPress(task)}>
+    <TouchableOpacity style={styles.cardItem} onPress={() => onTaskItemPress(task)}>
       <Ionicons
         style={styles.icon}
         name={task.completed ? 'checkmark-circle' : 'checkmark-circle-outline'}
         size={spacing.md + 2}
         color={colors.lightOrange}
       />
-      <Text
-        style={[styles.textSmall, task.completed && styles.strikeThroughText]}>
+      <Text style={[styles.textSmall, task.completed && styles.strikeThroughText]}>
         {task.title}
       </Text>
     </TouchableOpacity>

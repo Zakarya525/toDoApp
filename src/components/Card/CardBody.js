@@ -6,9 +6,7 @@ import { createStyle } from './Styles';
 export const CardBody = ({ tasks, onCardItemPress }) => {
   const styles = createStyle(useTheme());
 
-  const renderItem = ({ item }) => (
-    <CardItem task={item} onPress={onCardItemPress} />
-  );
+  const renderItem = ({ item }) => <CardItem task={item} onPress={onCardItemPress} />;
 
   return (
     <FlatList

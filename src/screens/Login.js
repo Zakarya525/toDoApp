@@ -29,31 +29,31 @@ const Login = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior='height'>
-      <Header title='Welcome back!' text='Lets help you meet your tasks' />
+    <KeyboardAvoidingView style={styles.container} behavior="height">
+      <Header title="Welcome back!" text="Lets help you meet your tasks" />
 
       <Image style={styles.img} source={require('../imgs/loginScr.jpg')} />
 
       <View>
         <TextInput
           style={styles.input}
-          autoComplete='username'
+          autoComplete="username"
           onChangeText={(value) => handleChange('username', value)}
           value={inputs.username}
-          placeholder='Enter your username'
+          placeholder="Enter your username"
         />
 
         <TextInput
           style={styles.input}
           onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
-          placeholder='Enter password'
+          placeholder="Enter password"
           secureTextEntry
         />
 
-        <ButtonSecondary name='Login' submitHandler={submitHandler} />
+        <ButtonSecondary name="Login" submitHandler={submitHandler} />
       </View>
-      <Footer text="Don't have an account ? " link='Sign Up' />
+      <Footer text="Don't have an account ? " link="Sign Up" />
     </KeyboardAvoidingView>
   );
 };

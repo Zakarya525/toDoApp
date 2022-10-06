@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { colors, fontSizes, spacing } from '@utils';
 import { useState } from 'react';
@@ -14,11 +8,7 @@ import { createStyle } from './Styles';
 const AddNewTaskButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={() => onPress()}>
-      <AntDesign
-        name='pluscircleo'
-        size={spacing.lg}
-        color={colors.addBtnColor}
-      />
+      <AntDesign name="pluscircleo" size={spacing.lg} color={colors.addBtnColor} />
     </TouchableOpacity>
   );
 };
@@ -26,11 +16,7 @@ const AddNewTaskButton = ({ onPress }) => {
 const SubmitTaskButton = ({ onSubmit }) => {
   return (
     <TouchableOpacity onPress={() => onSubmit()}>
-      <AntDesign
-        name='checkcircle'
-        size={spacing.lg}
-        color={colors.addBtnColor}
-      />
+      <AntDesign name="checkcircle" size={spacing.lg} color={colors.addBtnColor} />
     </TouchableOpacity>
   );
 };
@@ -56,7 +42,7 @@ export const CardHeader = ({ onAddNewTask }) => {
         <Text style={styles.text}>Daily Tasks</Text>
       ) : (
         <TextInput
-          placeholder='What is on your mind?'
+          placeholder="What is on your mind?"
           style={styles.input}
           onChangeText={(text) => setTitle(text)}
         />

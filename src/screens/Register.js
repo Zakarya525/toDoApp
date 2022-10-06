@@ -28,44 +28,40 @@ const Register = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior='height'>
-      <Header title='Welcome onboard!' text='Lets help you meet your tasks' />
+    <KeyboardAvoidingView style={styles.container} behavior="height">
+      <Header title="Welcome onboard!" text="Lets help you meet your tasks" />
       <View>
         <TextInput
           style={styles.input}
           onChangeText={(value) => handleChange('name', value)}
           clearTextOnFocus={true}
           value={inputs.name}
-          autoComplete='name'
-          placeholder='Enter your username'
+          autoComplete="name"
+          placeholder="Enter your username"
         />
 
         <TextInput
           style={styles.input}
-          autoComplete='email'
+          autoComplete="email"
           onChangeText={(value) => handleChange('email', value)}
           value={inputs.email}
-          placeholder='Enter your email'
+          placeholder="Enter your email"
         />
 
         <TextInput
           style={styles.input}
           onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
-          placeholder='Enter password'
+          placeholder="Enter password"
           secureTextEntry
         />
 
-        <TextInput
-          style={styles.input}
-          placeholder='Confirm password'
-          secureTextEntry
-        />
+        <TextInput style={styles.input} placeholder="Confirm password" secureTextEntry />
 
-        <ButtonSecondary name='Register' submitHandler={submitHandler} />
+        <ButtonSecondary name="Register" submitHandler={submitHandler} />
       </View>
 
-      <Footer text='Already have an account ? ' link='Sign In' />
+      <Footer text="Already have an account ? " link="Sign In" />
     </KeyboardAvoidingView>
   );
 };

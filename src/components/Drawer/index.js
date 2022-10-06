@@ -1,3 +1,3 @@
-import DrawerContent from "./DrawerContent";
+import DrawerContent from './DrawerContent';
 
 export { DrawerContent };

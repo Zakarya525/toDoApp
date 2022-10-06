@@ -1,3 +1,3 @@
-import ButtonSecondary from "./ButtonSecondary";
+import ButtonSecondary from './ButtonSecondary';
 
 export { ButtonSecondary };

@@ -10,9 +10,7 @@ const Footer = ({ text, link }) => {
   const styles = createStyle(theme);
 
   return (
-    <TouchableOpacity
-      style={styles.footer}
-      onPress={() => navigation.navigate(link)}>
+    <TouchableOpacity style={styles.footer} onPress={() => navigation.navigate(link)}>
       <Text style={styles.text}>
         {text}
         <Text style={styles.spanText}>{link}</Text>

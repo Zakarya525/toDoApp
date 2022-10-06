@@ -1,12 +1,13 @@
 import { Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { createStyle } from './Styles';
+import { useTheme } from '@context/Theme';
+import { createStyle } from './Style';
 
 const Footer = ({ text, link }) => {
-  const styles = createStyle();
-
   let navigation = useNavigation();
+  const { theme } = useTheme();
+  const styles = createStyle(theme);
 
   return (
     <TouchableOpacity

@@ -1,5 +1,5 @@
-import { useTheme } from '../context/Theme';
-import { createStyle } from './Styles';
+import { StyleSheet, Text, View } from 'react-native';
+import { colors } from '@utils';
 
 const Profile = () => {
   const styles = createStyle(useTheme());

@@ -1,8 +1,7 @@
 import { Text, View } from 'react-native';
-import { ProfileImage } from '../ProfileImage/ProfileImage';
-import { useTheme } from '../../context/Theme';
-import { useAuth } from '../../context/Authentication';
-import { createStyle } from './Styles';
+import ProfileImage from '@components/ProfileImage';
+import { useTheme } from '@context/Theme';
+import { useAuth } from '@context/Authentication';
 
 const DashHeader = () => {
   const { user } = useAuth();

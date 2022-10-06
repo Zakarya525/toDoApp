@@ -1,11 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { fontSizes, spacing } from '../../utils/sizes';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../../utils/colors';
+import { colors, fontSizes, spacing } from '@utils';
 import { Audio } from 'expo-av';
 import { useEffect, useState } from 'react';
-import { useTheme } from '../../context/Theme';
-import { createStyle } from './Styles';
+import { useTheme } from '@context/Theme';
 
 export const CardItem = ({ task, onPress }) => {
   const styles = createStyle(useTheme());

@@ -1,10 +1,8 @@
 import { StyleSheet, Image, View } from 'react-native';
 import Header from '../components/Header/Header';
 import { useNavigation } from '@react-navigation/native';
-import colors from '../utilities/colors';
+
 import ButtonSecondary from '../components/Buttons/ButtonSecondary';
-import { createStyle } from './Styles';
-import { useTheme } from '../context/Theme';
 
 const Splash = () => {
   const styles = createStyle(useTheme());

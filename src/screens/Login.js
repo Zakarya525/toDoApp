@@ -11,9 +11,12 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import ButtonSecondary from '../components/Buttons/ButtonSecondary';
 
-import { useAuth } from '../context/Authentication';
-import { createStyle } from './Styles';
-import { useTheme } from '../context/Theme';
+import { fontSizes, spacing, colors } from '@utils';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import ButtonSecondary from '@components/Buttons/ButtonSecondary';
+
+import { useAuth } from '@context/Authentication';
 
 const Login = () => {
   const styles = createStyle(useTheme());

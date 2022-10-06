@@ -1,17 +1,18 @@
 import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useContext } from "react";
-import Splash from "../screens/Splash";
-import Login from "../screens/Login";
-import Register from "../screens/Register";
-import Loading from "../components/Loading";
+import Splash from "@screens/Splash";
+import Login from "@screens/Login";
+import Register from "@screens/Register";
+import Loading from "@components/Loading";
 import DrawerNavigation from "./DrawerNavigation";
-import AuthContext from "../context/Authentication/authContext";
+import { useAuth } from "@context/Authentication";
 
 const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
-  const { token, isLoading } = useContext(AuthContext);
+  const { token, isLoading } = useAuth();
+
   if (isLoading) {
     return <Loading />;
   }

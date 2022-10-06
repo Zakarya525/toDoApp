@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import React from 'react';
-import { createStyle } from './Styles';
+import { createStyle } from './Style';
+import { useTheme } from '@context/Theme';
 
 const ButtonSecondary = ({ name, submitHandler }) => {
-  const styles = createStyle();
-
+  const { theme } = useTheme();
+  const styles = createStyle(theme);
   return (
     <View>
       <Pressable style={styles.button} onPress={submitHandler}>

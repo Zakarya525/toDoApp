@@ -2,16 +2,13 @@ import {
   Text,
   KeyboardAvoidingView,
   TextInput,
-  Pressable,
   View,
   TouchableOpacity,
 } from 'react-native';
 import React, { useState } from 'react';
-import ButtonSecondary from '../Buttons/ButtonSecondary';
-import { createStyle } from './Styles';
+import { ButtonSecondary } from '@components/Buttons';
 
 const Form = ({ link }) => {
-  const styles = createStyle();
   const [inputs, setInputs] = useState({
     name: '',
     email: '',

@@ -1,4 +1,5 @@
 import { Image, StyleSheet } from 'react-native';
+import { createStyle } from './Styles';
 import { useTheme } from '@context/Theme';
 
 export const ProfileImage = ({ image }) => {

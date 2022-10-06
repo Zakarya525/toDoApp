@@ -1,5 +1,6 @@
 import { Text, View } from 'react-native';
 import ProfileImage from '@components/ProfileImage';
+import { createStyle } from './Styles';
 import { useTheme } from '@context/Theme';
 import { useAuth } from '@context/Authentication';
 

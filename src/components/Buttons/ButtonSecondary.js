@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { Text, View, Pressable } from 'react-native';
 import React from 'react';
 import { createStyle } from './Style';
 import { useTheme } from '@context/Theme';

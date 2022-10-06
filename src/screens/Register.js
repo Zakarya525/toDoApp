@@ -1,14 +1,10 @@
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  TextInput,
-  View,
-} from 'react-native';
+import { KeyboardAvoidingView, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
 import ButtonSecondary from '@components/Buttons/ButtonSecondary';
-import { fontSizes, spacing, colors } from '@utils';
+import { createStyle } from './Styles';
+import { useTheme } from '@context/Theme';
 import { useAuth } from '../context/Authentication';
 
 const Register = () => {

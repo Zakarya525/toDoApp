@@ -3,6 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { colors, fontSizes, spacing } from '@utils';
 import { Audio } from 'expo-av';
 import { useEffect, useState } from 'react';
+import { createStyle } from './Styles';
 import { useTheme } from '@context/Theme';
 
 export const CardItem = ({ task, onPress }) => {

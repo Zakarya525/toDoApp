@@ -2,11 +2,10 @@ import { StyleSheet, View } from 'react-native';
 import { spacing, generateUUID } from '@utils';
 import { CardHeader } from './CardHeader';
 import { CardBody } from './CardBody';
-
 import { taskList } from '../../../data/task_list';
 import { useState } from 'react';
+import { createStyle } from './Styles';
 import { useTheme } from '@context/Theme';
-
 export const Card = () => {
   const [tasks, setTasks] = useState(taskList);
   const { theme } = useTheme();

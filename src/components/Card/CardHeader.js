@@ -9,6 +9,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { colors, fontSizes, spacing } from '@utils';
 import { useState } from 'react';
 import { useTheme } from '@context/Theme';
+import { createStyle } from './Styles';
 
 const AddNewTaskButton = ({ onPress }) => {
   return (

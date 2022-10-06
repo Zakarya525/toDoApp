@@ -7,7 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@context/Theme';
 
 const Splash = () => {
-  const styles = createStyle(useTheme());
+  const { theme } = useTheme();
+  const styles = createStyle(theme);
   let navigation = useNavigation();
 
   const submitHandler = () => {

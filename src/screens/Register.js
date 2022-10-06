@@ -9,7 +9,8 @@ import { useAuth } from '../context/Authentication';
 import { useTheme } from '@context/Theme';
 
 const Register = () => {
-  const styles = createStyle(useTheme());
+  const { theme } = useTheme();
+  const styles = createStyle(theme);
   const { signUp } = useAuth();
   const [inputs, setInputs] = useState({
     name: '',

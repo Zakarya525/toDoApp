@@ -1,26 +1,21 @@
-import {
-  Image,
-  KeyboardAvoidingView,
-  StyleSheet,
-  TextInput,
-  View,
-} from "react-native";
+import { Image, KeyboardAvoidingView, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
 
-import React, { useContext, useState } from "react";
-
-import { fontSizes, spacing, colors } from "@utils";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import ButtonSecondary from "@components/Buttons/ButtonSecondary";
-
-import { useAuth } from "@context/Authentication";
+import ButtonSecondary from '@components/Buttons/ButtonSecondary';
+import Footer from '@components/Footer';
+import Header from '@components/Header';
+import { createStyle } from './Styles';
+import { useAuth } from '@context/Authentication';
+import { useTheme } from '@context/Theme';
 
 const Login = () => {
+  const { theme } = useTheme();
+  const styles = createStyle(theme);
   const { signIn } = useAuth();
 
   const [inputs, setInputs] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   const handleChange = (name, value) => {
@@ -39,20 +34,20 @@ const Login = () => {
     <KeyboardAvoidingView style={styles.container} behavior="height">
       <Header title="Welcome back!" text="Lets help you meet your tasks" />
 
-      <Image style={styles.img} source={require("../imgs/loginScr.jpg")} />
+      <Image style={styles.img} source={require('../imgs/loginScr.jpg')} />
 
       <View>
         <TextInput
           style={styles.input}
           autoComplete="username"
-          onChangeText={(value) => handleChange("username", value)}
+          onChangeText={(value) => handleChange('username', value)}
           value={inputs.username}
           placeholder="Enter your username"
         />
 
         <TextInput
           style={styles.input}
-          onChangeText={(value) => handleChange("password", value)}
+          onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
           placeholder="Enter password"
           secureTextEntry
@@ -66,34 +61,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.offWhite,
-  },
-
-  input: {
-    width: 320,
-    margin: 12,
-    padding: 12,
-    borderRadius: 30,
-    backgroundColor: colors.white,
-    fontFamily: "Poppins_400Regular",
-  },
-
-  text: {
-    fontFamily: "Poppins_400Regular",
-    fontSize: fontSizes.md,
-    lineHeight: spacing.xxl,
-  },
-
-  img: {
-    width: 250,
-    height: 250,
-    opacity: 0.9,
-  },
-});

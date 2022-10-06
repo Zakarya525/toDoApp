@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { View } from "react-native";
-import {
-  Avatar,
-  Caption,
-  Drawer,
-  Switch,
-  Text,
-  Title,
-  TouchableRipple,
-} from "react-native-paper";
-import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import { Avatar, Caption, Drawer, Switch, Text, Title, TouchableRipple } from 'react-native-paper';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import React, { useEffect, useState } from 'react';
 
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
-import { useAuth } from "@context/Authentication";
-import { useTheme } from "@context/Theme";
-import { createStyle } from "./Style";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View } from 'react-native';
+import { createStyle } from './Style';
+import { useAuth } from '@context/Authentication';
+import { useTheme } from '@context/Theme';
 
 const DrawerContent = (props) => {
   const { logOut, user } = useAuth();
@@ -29,7 +20,7 @@ const DrawerContent = (props) => {
   }
 
   useEffect(() => {
-    setIsDarkTheme(theme.themeMode === "dark");
+    setIsDarkTheme(theme.themeMode === 'dark');
   }, []);
 
   return (
@@ -37,12 +28,9 @@ const DrawerContent = (props) => {
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
-            <View style={{ flexDirection: "row", marginTop: 15 }}>
-              <Avatar.Image
-                source={require("../../../assets/dummy_image.jpg")}
-                size={50}
-              />
-              <View style={{ marginLeft: 15, flexDirection: "column" }}>
+            <View style={{ flexDirection: 'row', marginTop: 15 }}>
+              <Avatar.Image source={require('../../../assets/dummy_image.jpg')} size={50} />
+              <View style={{ marginLeft: 15, flexDirection: 'column' }}>
                 <Title style={styles.title}>{user.username}</Title>
                 <Caption style={styles.caption}>{user.email}</Caption>
               </View>
@@ -51,12 +39,10 @@ const DrawerContent = (props) => {
 
           <Drawer.Section style={styles.drawerSection}>
             <DrawerItem
-              icon={({ color, size }) => (
-                <Icon name="home-outline" color={color} size={size} />
-              )}
+              icon={({ color, size }) => <Icon name="home-outline" color={color} size={size} />}
               label="Home"
               onPress={() => {
-                props.navigation.navigate("Home");
+                props.navigation.navigate('Home');
               }}
             />
           </Drawer.Section>
@@ -69,11 +55,7 @@ const DrawerContent = (props) => {
               <View style={styles.preference}>
                 <Text>Dark Theme</Text>
                 <View>
-                  <Switch
-                    color="black"
-                    value={isDarkTheme}
-                    onValueChange={handleSwitchDarkTheme}
-                  />
+                  <Switch color="black" value={isDarkTheme} onValueChange={handleSwitchDarkTheme} />
                 </View>
               </View>
             </TouchableRipple>
@@ -82,9 +64,7 @@ const DrawerContent = (props) => {
       </DrawerContentScrollView>
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
-          icon={({ color, size }) => (
-            <Icon name="exit-to-app" color={color} size={size} />
-          )}
+          icon={({ color, size }) => <Icon name="exit-to-app" color={color} size={size} />}
           label="Sign Out"
           onPress={() => {
             logOut();

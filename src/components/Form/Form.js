@@ -1,21 +1,13 @@
-import {
-  StyleSheet,
-  Text,
-  KeyboardAvoidingView,
-  TextInput,
-  Pressable,
-  View,
-  TouchableOpacity,
-} from "react-native";
-import React, { useState } from "react";
-import { colors, fontSizes, spacing } from "@utils";
-import { ButtonSecondary } from "@components/Buttons";
+import { KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+
+import { ButtonSecondary } from '@components/Buttons';
 
 const Form = ({ link }) => {
   const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
 
   const handleChange = (name, value) => {
@@ -25,17 +17,12 @@ const Form = ({ link }) => {
     });
   };
 
-  const submitHandler = () => {
-    console.warn(inputs.name, inputs.email, inputs.password);
-    setInputs({});
-  };
-
   return (
     <KeyboardAvoidingView style={styles.container} behavior="hieght">
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          onChangeText={(value) => handleChange("name", value)}
+          onChangeText={(value) => handleChange('name', value)}
           clearTextOnFocus={true}
           value={inputs.name}
           autoComplete="name"
@@ -45,14 +32,14 @@ const Form = ({ link }) => {
         <TextInput
           style={styles.input}
           autoComplete="email"
-          onChangeText={(value) => handleChange("email", value)}
+          onChangeText={(value) => handleChange('email', value)}
           value={inputs.email}
           placeholder="Enter your email"
         />
 
         <TextInput
           style={styles.input}
-          onChangeText={(value) => handleChange("password", value)}
+          onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
           placeholder="Enter password"
         />
@@ -62,12 +49,9 @@ const Form = ({ link }) => {
 
       <ButtonSecondary text={link} />
 
-      <TouchableOpacity
-        style={styles.footer}
-        onPress={() => navigation.navigate(link)}
-      >
+      <TouchableOpacity style={styles.footer} onPress={() => navigation.navigate(link)}>
         <Text style={styles.text}>
-          {" "}
+          {' '}
           Already have an account ? <Text style={styles.spanText}>{link}</Text>
         </Text>
       </TouchableOpacity>
@@ -76,36 +60,3 @@ const Form = ({ link }) => {
 };
 
 export default Form;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 0.4,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-  },
-
-  inputContainer: {
-    width: "100%",
-  },
-
-  input: {
-    width: 350,
-    margin: 12,
-    padding: 12,
-    borderRadius: 30,
-    backgroundColor: colors.white,
-    fontFamily: "Poppins_400Regular",
-  },
-
-  text: {
-    fontFamily: "Poppins_400Regular",
-    fontSize: fontSizes.md,
-    lineHeight: spacing.xxl,
-  },
-
-  spanText: {
-    color: colors.lightOrange,
-    fontFamily: "Poppins_400Regular",
-  },
-});

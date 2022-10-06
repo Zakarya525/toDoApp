@@ -1,14 +1,15 @@
-import AuthContext from "./authContext";
-import AuthReducer from "./authReducer";
-import { useEffect, useReducer } from "react";
-import storage from "@app/storage";
-import { getUserMe, loginUser, registerUser } from "@services/user/api";
+import { getUserMe, loginUser, registerUser } from '@services/user/api';
+import { useEffect, useReducer } from 'react';
+
+import AuthContext from './authContext';
+import AuthReducer from './authReducer';
+import storage from '@app/storage';
 
 export const AuthProvider = ({ children }) => {
   const initialState = {
     user: {},
     isLoading: false,
-    token: "",
+    token: '',
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -17,25 +18,25 @@ export const AuthProvider = ({ children }) => {
     setLoading();
     loginUser(username, password).then((res) => {
       if (res.status === 200) {
-        storage.set("token", res.data.access_token);
+        storage.set('token', res.data.access_token);
         dispatch({
-          type: "LOGIN_USER_AND_GET_TOKEN",
+          type: 'LOGIN_USER_AND_GET_TOKEN',
           token: res.data.access_token,
         });
       }
     });
   };
 
-  const setLoading = () => dispatch({ type: "SET_LOADING" });
+  const setLoading = () => dispatch({ type: 'SET_LOADING' });
 
   //Get user data
   useEffect(() => {
     setLoading();
-    storage.get("token").then((token) => {
+    storage.get('token').then((token) => {
       getUserMe(token).then((res) => {
         if (res.status === 200) {
           dispatch({
-            type: "GET_USER",
+            type: 'GET_USER',
             payload: res.data,
             token: token,
           });
@@ -55,9 +56,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    storage.remove("token");
+    storage.remove('token');
     dispatch({
-      type: "LOGOUT",
+      type: 'LOGOUT',
     });
   };
 

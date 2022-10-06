@@ -1,7 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
-import { colors } from "@utils";
+import { Text, View } from 'react-native';
+
+import { createStyle } from './Styles';
+import { useTheme } from '@context/Theme';
 
 const Profile = () => {
+  const styles = createStyle(useTheme());
   return (
     <View style={styles.container}>
       <Text>Profile</Text>
@@ -10,13 +13,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.offWhite,
-  },
-});

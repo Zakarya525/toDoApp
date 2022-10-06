@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import React from "react";
-import { createStyle } from "./Style";
-import { useTheme } from "@context/Theme";
+import { Pressable, Text, View } from 'react-native';
+
+import React from 'react';
+import { createStyle } from './Style';
+import { useTheme } from '@context/Theme';
 
 const ButtonSecondary = ({ name, submitHandler }) => {
   const { theme } = useTheme();

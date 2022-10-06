@@ -1,23 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { fontSizes, spacing } from "@utils";
+import { Text, View } from 'react-native';
+
+import React from 'react';
+import { createStyle } from './Styles';
+import { useTheme } from '@context/Theme';
 
 const HeaderText = ({ text }) => {
+  const styles = createStyle(useTheme);
   return (
     <View>
-      <Text style={styles.text}>{text}</Text>
+      <Text style={styles.textMedium}>{text}</Text>
     </View>
   );
 };
 
 export default HeaderText;
-
-const styles = StyleSheet.create({
-  text: {
-    fontFamily: "Poppins_400Regular",
-    fontSize: fontSizes.md,
-    lineHeight: spacing.xxl,
-    marginHorizontal: 30,
-    textAlign: "center",
-  },
-});

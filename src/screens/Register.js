@@ -1,22 +1,21 @@
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  TextInput,
-  View,
-} from "react-native";
-import React, { useState } from "react";
-import Header from "@components/Header/Header";
-import Footer from "@components/Footer/Footer";
-import ButtonSecondary from "@components/Buttons/ButtonSecondary";
-import { fontSizes, spacing, colors } from "@utils";
-import { useAuth } from "../context/Authentication";
+import { KeyboardAvoidingView, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
+
+import ButtonSecondary from '@components/Buttons/ButtonSecondary';
+import Footer from '@components/Footer/Footer';
+import Header from '@components/Header/Header';
+import { createStyle } from './Styles';
+import { useAuth } from '../context/Authentication';
+import { useTheme } from '@context/Theme';
 
 const Register = () => {
+  const { theme } = useTheme();
+  const styles = createStyle(theme);
   const { signUp } = useAuth();
   const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
 
   const handleChange = (name, value) => {
@@ -36,7 +35,7 @@ const Register = () => {
       <View>
         <TextInput
           style={styles.input}
-          onChangeText={(value) => handleChange("name", value)}
+          onChangeText={(value) => handleChange('name', value)}
           clearTextOnFocus={true}
           value={inputs.name}
           autoComplete="name"
@@ -46,24 +45,20 @@ const Register = () => {
         <TextInput
           style={styles.input}
           autoComplete="email"
-          onChangeText={(value) => handleChange("email", value)}
+          onChangeText={(value) => handleChange('email', value)}
           value={inputs.email}
           placeholder="Enter your email"
         />
 
         <TextInput
           style={styles.input}
-          onChangeText={(value) => handleChange("password", value)}
+          onChangeText={(value) => handleChange('password', value)}
           value={inputs.password}
           placeholder="Enter password"
           secureTextEntry
         />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm password"
-          secureTextEntry
-        />
+        <TextInput style={styles.input} placeholder="Confirm password" secureTextEntry />
 
         <ButtonSecondary name="Register" submitHandler={submitHandler} />
       </View>
@@ -74,28 +69,3 @@ const Register = () => {
 };
 
 export default Register;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.offWhite,
-  },
-
-  input: {
-    width: 320,
-    margin: 12,
-    padding: 12,
-    borderRadius: 30,
-    backgroundColor: colors.white,
-    fontFamily: "Poppins_400Regular",
-  },
-
-  text: {
-    fontFamily: "Poppins_400Regular",
-    fontSize: fontSizes.md,
-    lineHeight: spacing.xxl,
-  },
-});

@@ -1,14 +1,18 @@
-import { StyleSheet, Image, View } from "react-native";
-import Header from "../components/Header/Header";
-import { useNavigation } from "@react-navigation/native";
-import { colors } from "@utils";
-import ButtonSecondary from "../components/Buttons/ButtonSecondary";
+import { Image, View } from 'react-native';
+
+import ButtonSecondary from '@components/Buttons/ButtonSecondary';
+import Header from '@components/Header/Header';
+import { createStyle } from './Styles';
+import { useNavigation } from '@react-navigation/native';
+import { useTheme } from '@context/Theme';
 
 const Splash = () => {
+  const { theme } = useTheme();
+  const styles = createStyle(theme);
   let navigation = useNavigation();
 
   const submitHandler = () => {
-    navigation.replace("Sign Up");
+    navigation.replace('Sign Up');
   };
 
   return (
@@ -18,7 +22,7 @@ const Splash = () => {
         text="An app that makes you timetable easy for you"
       />
 
-      <Image style={styles.img} source={require("../imgs/manWithMob.jpg")} />
+      <Image style={styles.img} source={require('../imgs/manWithMob.jpg')} />
 
       <ButtonSecondary name="Get Started" submitHandler={submitHandler} />
     </View>
@@ -26,19 +30,3 @@ const Splash = () => {
 };
 
 export default Splash;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.offWhite,
-  },
-
-  img: {
-    width: 250,
-    height: 200,
-    opacity: 0.9,
-  },
-});

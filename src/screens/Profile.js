@@ -1,4 +1,5 @@
 import { Text, View } from 'react-native';
+
 import { createStyle } from './Styles';
 import { useTheme } from '@context/Theme';
 

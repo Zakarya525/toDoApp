@@ -1,7 +1,7 @@
-import { FlatList, StyleSheet } from 'react-native';
 import { CardItem } from './CardItem';
-import { useTheme } from '../../context/Theme';
+import { FlatList } from 'react-native';
 import { createStyle } from './Styles';
+import { useTheme } from '@context/Theme';
 
 export const CardBody = ({ tasks, onCardItemPress }) => {
   const styles = createStyle(useTheme());

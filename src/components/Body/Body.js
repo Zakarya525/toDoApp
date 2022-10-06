@@ -1,7 +1,8 @@
 import { Text, View } from 'react-native';
+
 import Card from '../Card';
-import { useTheme } from '@context/Theme';
 import { createStyle } from './Styles';
+import { useTheme } from '@context/Theme';
 
 export const Body = () => {
   const styles = createStyle(useTheme());

@@ -1,9 +1,11 @@
 import { Image, View } from 'react-native';
-import Header from '../components/Header/Header';
-import { useNavigation } from '@react-navigation/native';
+
+import ButtonSecondary from '@components/Buttons/ButtonSecondary';
+import Header from '@components/Header/Header';
 import { createStyle } from './Styles';
-import ButtonSecondary from '../components/Buttons/ButtonSecondary';
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@context/Theme';
+
 const Splash = () => {
   const styles = createStyle(useTheme());
   let navigation = useNavigation();

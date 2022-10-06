@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
 import { Avatar, Caption, Drawer, Switch, Text, Title, TouchableRipple } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import React, { useEffect, useState } from 'react';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { View } from 'react-native';
+import { createStyle } from './Style';
 import { useAuth } from '@context/Authentication';
 import { useTheme } from '@context/Theme';
-import { createStyle } from './Style';
 
 const DrawerContent = (props) => {
   const { logOut, user } = useAuth();

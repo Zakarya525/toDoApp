@@ -1,7 +1,7 @@
-import { View } from 'react-native';
-import React from 'react';
-import HeaderTitle from './HeaderTitle';
 import HeaderText from './HeaderText';
+import HeaderTitle from './HeaderTitle';
+import React from 'react';
+import { View } from 'react-native';
 import { createStyle } from './Styles';
 import { useTheme } from 'react-navigation';
 

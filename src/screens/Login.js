@@ -1,11 +1,12 @@
 import { Image, KeyboardAvoidingView, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
-import Header from '@components/Header';
-import Footer from '@components/Footer';
+
 import ButtonSecondary from '@components/Buttons/ButtonSecondary';
+import Footer from '@components/Footer';
+import Header from '@components/Header';
 import { createStyle } from './Styles';
-import { useTheme } from '@context/Theme';
 import { useAuth } from '@context/Authentication';
+import { useTheme } from '@context/Theme';
 
 const Login = () => {
   const styles = createStyle(useTheme());

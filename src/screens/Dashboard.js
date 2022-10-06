@@ -1,6 +1,6 @@
-import { StyleSheet, View } from 'react-native';
-import DashHeader from '@components/Header/DashHeader';
 import Body from '@components/Body';
+import DashHeader from '@components/Header/DashHeader';
+import { View } from 'react-native';
 import { createStyle } from './Styles';
 import { useTheme } from '@context/Theme';
 

@@ -1,8 +1,9 @@
+import { getUserMe, loginUser, registerUser } from '@services/user/api';
+import { useEffect, useReducer } from 'react';
+
 import AuthContext from './authContext';
 import AuthReducer from './authReducer';
-import { useEffect, useReducer } from 'react';
 import storage from '@app/storage';
-import { getUserMe, loginUser, registerUser } from '@services/user/api';
 
 export const AuthProvider = ({ children }) => {
   const initialState = {

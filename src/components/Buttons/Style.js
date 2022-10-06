@@ -1,5 +1,6 @@
+import { colors, fontSizes } from '@utils';
+
 import { StyleSheet } from 'react-native';
-import { fontSizes, colors } from '@utils';
 
 export const createStyle = (theme) => {
   return StyleSheet.create({

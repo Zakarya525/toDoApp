@@ -1,5 +1,6 @@
-import { Text, KeyboardAvoidingView, TextInput, View, TouchableOpacity } from 'react-native';
+import { KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
+
 import { ButtonSecondary } from '@components/Buttons';
 
 const Form = ({ link }) => {

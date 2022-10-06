@@ -1,9 +1,10 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { colors, spacing } from '@utils';
+
 import { AntDesign } from '@expo/vector-icons';
-import { colors, fontSizes, spacing } from '@utils';
+import { createStyle } from './Styles';
 import { useState } from 'react';
 import { useTheme } from '@context/Theme';
-import { createStyle } from './Styles';
 
 const AddNewTaskButton = ({ onPress }) => {
   return (

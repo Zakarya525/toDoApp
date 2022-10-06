@@ -1,11 +1,12 @@
 import { KeyboardAvoidingView, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
-import Header from '@components/Header/Header';
-import Footer from '@components/Footer/Footer';
+
 import ButtonSecondary from '@components/Buttons/ButtonSecondary';
+import Footer from '@components/Footer/Footer';
+import Header from '@components/Header/Header';
 import { createStyle } from './Styles';
-import { useTheme } from '@context/Theme';
 import { useAuth } from '../context/Authentication';
+import { useTheme } from '@context/Theme';
 
 const Register = () => {
   const styles = createStyle(useTheme());

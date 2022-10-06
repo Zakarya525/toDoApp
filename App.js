@@ -1,8 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import { AuthProvider } from './src/context/Authentication';
-import { ThemeProvider } from './src/context/Theme';
 import {
   Poppins_100Thin,
   Poppins_100Thin_Italic,
@@ -24,8 +19,13 @@ import {
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
 
-import StackNavigation from './src/navigations/StackNavigation';
+import AppLoading from 'expo-app-loading';
+import { AuthProvider } from './src/context/Authentication';
 import CustomStatusBar from './src/components/StatusBar';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigation from './src/navigations/StackNavigation';
+import { ThemeProvider } from './src/context/Theme';
+import { useFonts } from 'expo-font';
 
 export default function App() {
   let [fontsLoaded, error] = useFonts({

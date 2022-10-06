@@ -1,6 +1,6 @@
+import { fontSizes, spacing } from '@utils';
+
 import { StyleSheet } from 'react-native';
-import { spacing } from '@utils/sizes';
-import { fontSizes } from '@utils/sizes';
 
 export const createStyle = (theme) => {
   return StyleSheet.create({

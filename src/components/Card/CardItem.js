@@ -1,8 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { colors, fontSizes, spacing } from '@utils';
-import { Audio } from 'expo-av';
+import { Text, TouchableOpacity } from 'react-native';
+import { colors, spacing } from '@utils';
 import { useEffect, useState } from 'react';
+
+import { Audio } from 'expo-av';
+import { Ionicons } from '@expo/vector-icons';
 import { createStyle } from './Styles';
 import { useTheme } from '@context/Theme';
 

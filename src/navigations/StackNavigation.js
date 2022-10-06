@@ -1,11 +1,13 @@
 import 'react-native-gesture-handler';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import React, { useContext } from 'react';
-import Splash from '@screens/Splash';
+
+import DrawerNavigation from './DrawerNavigation';
+import Loading from '@components/Loading';
 import Login from '@screens/Login';
 import Register from '@screens/Register';
-import Loading from '@components/Loading';
-import DrawerNavigation from './DrawerNavigation';
+import Splash from '@screens/Splash';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '@context/Authentication';
 
 const Stack = createNativeStackNavigator();

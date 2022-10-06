@@ -1,7 +1,8 @@
 import { darkTheme, lightTheme } from '@config/theme';
 import { useEffect, useReducer } from 'react';
-import ThemeReducer from '../Theme/themeReducer';
+
 import ThemeContext from './themeContext';
+import ThemeReducer from '../Theme/themeReducer';
 import storage from '@app/storage';
 
 export const ThemeProvider = ({ children }) => {

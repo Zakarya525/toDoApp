@@ -6,7 +6,6 @@ import { Audio } from 'expo-av';
 import { useEffect, useState } from 'react';
 import { useTheme } from '../../context/Theme';
 import { createStyle } from './Styles';
-
 export const CardItem = ({ task, onPress }) => {
   const styles = createStyle(useTheme());
   const [sound, setSound] = useState();

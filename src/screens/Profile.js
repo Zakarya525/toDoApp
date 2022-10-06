@@ -1,6 +1,5 @@
 import { useTheme } from '../context/Theme';
 import { createStyle } from './Styles';
-
 const Profile = () => {
   const styles = createStyle(useTheme());
   return (

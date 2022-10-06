@@ -3,7 +3,6 @@ import DashHeader from '../components/Header/DashHeader';
 import Body from '../components/Body';
 import { useTheme } from '../context/Theme';
 import { createStyle } from './Styles';
-
 const Dashboard = () => {
   const { theme } = useTheme();
   const styles = createStyle(theme);

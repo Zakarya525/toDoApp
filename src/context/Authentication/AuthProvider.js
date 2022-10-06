@@ -1,73 +1,53 @@
-import AuthContext from './authContext';
-import getToken from '../../services/getToken';
-import AuthReducer from './authReducer';
-import { useEffect, useReducer } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import getUser from '../../services/getUser';
-import setUser from '../../services/setUser';
-import storage from '../../storage';
+import AuthContext from "./authContext";
+import AuthReducer from "./authReducer";
+import { useEffect, useReducer } from "react";
+import storage from "@app/storage";
+import { getUserMe, loginUser, registerUser } from "@services/user/api";
 
 export const AuthProvider = ({ children }) => {
   const initialState = {
     user: {},
     isLoading: false,
-    token: '',
+    token: "",
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   // Get user token
   const signIn = (username, password) => {
-    console.log(username, password);
     setLoading();
-    getToken({
-      username,
-      password,
-    }).then((res) => {
+    loginUser(username, password).then((res) => {
       if (res.status === 200) {
-        storage.set('token', res.data.access_token);
-        getUser({ token: res.data.access_token }).then((res) => {
-          if (res.status === 200) {
-            dispatch({
-              type: 'GET_USER',
-              token: res.data.access_token,
-              payload: res.data,
-            });
-          }
+        storage.set("token", res.data.access_token);
+        dispatch({
+          type: "LOGIN_USER_AND_GET_TOKEN",
+          token: res.data.access_token,
         });
       }
     });
   };
 
-  const setLoading = () => dispatch({ type: 'SET_LOADING' });
+  const setLoading = () => dispatch({ type: "SET_LOADING" });
 
   //Get user data
   useEffect(() => {
     setLoading();
-    const getToken = async () => await AsyncStorage.getItem('token');
-
-    getToken().then((t) => {
-      if (t !== null) {
-        getUser({ token: t }).then((res) => {
-          if (res.status === 200) {
-            dispatch({
-              type: 'GET_USER',
-              payload: res.data,
-              token: t,
-            });
-          }
-        });
-      } else
-        dispatch({
-          type: 'GET_TOKEN',
-          token: '',
-        });
+    storage.get("token").then((token) => {
+      getUserMe(token).then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_USER",
+            payload: res.data,
+            token: token,
+          });
+        }
+      });
     });
   }, []);
 
   //Register a new user
   const signUp = (username, email, password) => {
     setLoading();
-    setUser({ username, email, password }).then((res) => {
+    registerUser({ username, email, password }).then((res) => {
       if (res.status === 200) {
         signIn(username, password);
       }
@@ -75,9 +55,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    storage.remove('token');
+    storage.remove("token");
     dispatch({
-      type: 'LOGOUT',
+      type: "LOGOUT",
     });
   };
 
@@ -90,7 +70,8 @@ export const AuthProvider = ({ children }) => {
         signIn,
         signUp,
         logOut,
-      }}>
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

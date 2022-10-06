@@ -1,6 +1,6 @@
 import React from "react";
 import { ActivityIndicator, View } from "react-native";
-import { useTheme } from "../../context/Theme";
+import { useTheme } from "@context/Theme";
 
 const Loading = () => {
   const { theme } = useTheme();

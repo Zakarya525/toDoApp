@@ -5,11 +5,14 @@ import setTask from '../../services/tasks/setTask';
 import getTask from '../../services/tasks/getTask';
 import modifyTask from '../../services/tasks/modifyTask';
 import removeTask from '../../services/tasks/removeTask';
+import { useAuth } from '../Authentication';
 
 export const TasksProvider = ({ children }) => {
   const initialState = {
     tasks: [],
   };
+
+  const { isLoading } = useAuth();
 
   const [state, dispatch] = useReducer(tasksReducer, initialState);
 
@@ -60,7 +63,7 @@ export const TasksProvider = ({ children }) => {
         });
       }
     });
-  }, []);
+  }, [isLoading]);
 
   return (
     <TasksContext.Provider

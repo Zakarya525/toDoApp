@@ -6,7 +6,6 @@ import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from '../../utils/colors';
-import { useTasks } from '../../context/Tasks';
 import { useTheme } from '../../context/Theme';
 
 export const CardItem = ({ task, onPress, removeTask }) => {
@@ -20,7 +19,7 @@ export const CardItem = ({ task, onPress, removeTask }) => {
 
   async function onTaskItemPress(task) {
     onPress(task);
-    if (!task.completed) return;
+    if (task.completed) return;
     const { sound } = await Audio.Sound.createAsync(
       require('../../../assets/done.mp3')
     );

@@ -5,5 +5,5 @@ const ApiManager = axios.create({
   responseType: 'json',
   withCredentials: true,
 });
-
+ApiManager.defaults.timeout = 5000;
 export default ApiManager;

@@ -11,6 +11,7 @@ export default getTask = async (state) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log('Result: ', result.data);
     return result;
   } catch (error) {
     console.log(error);

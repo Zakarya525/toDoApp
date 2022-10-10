@@ -53,16 +53,22 @@ export const TasksProvider = ({ children }) => {
     });
   };
 
+  //Get tasks
+
+  const loadTasks = async () => {
+    const res = await getTask();
+    console.log(res);
+    if (res?.status === 200) {
+      dispatch({
+        type: 'SET_TASKS',
+        payload: res.data,
+      });
+    }
+  };
+
   //Get Tasks
   useEffect(() => {
-    getTask().then((res) => {
-      if (res.status === 200) {
-        dispatch({
-          type: 'SET_TASKS',
-          payload: res.data,
-        });
-      }
-    });
+    loadTasks();
   }, [isLoading]);
 
   return (

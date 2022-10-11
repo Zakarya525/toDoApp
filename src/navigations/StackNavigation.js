@@ -15,9 +15,9 @@ const Stack = createNativeStackNavigator();
 const StackNavigation = () => {
   const { token, isLoading } = useAuth();
 
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Stack.Navigator initialRouteName="Splash">

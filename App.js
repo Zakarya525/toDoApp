@@ -58,7 +58,8 @@ export default function App() {
   }, []);
 
   if (!fontsLoaded) return undefined;
-  else SplashScreen.hideAsync();
+
+  SplashScreen.hideAsync();
 
   return (
     <AuthProvider>

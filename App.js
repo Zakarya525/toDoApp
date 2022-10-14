@@ -19,13 +19,14 @@ import {
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
 
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 import { AuthProvider } from './src/context/Authentication';
 import CustomStatusBar from './src/components/StatusBar';
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigation from './src/navigations/StackNavigation';
 import { ThemeProvider } from './src/context/Theme';
 import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
 
 export default function App() {
   let [fontsLoaded, error] = useFonts({
@@ -49,9 +50,16 @@ export default function App() {
     Poppins_900Black_Italic,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+  useEffect(() => {
+    async function prapare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prapare();
+  }, []);
+
+  if (!fontsLoaded) return undefined;
+
+  SplashScreen.hideAsync();
 
   return (
     <AuthProvider>

@@ -1,6 +1,13 @@
-import { KeyboardAvoidingView, TextInput, View } from 'react-native';
-import React, { useState } from 'react';
-
+import {
+  KeyboardAvoidingView,
+  Button,
+  TextInput,
+  Text,
+  View,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
 import ButtonSecondary from '@components/Buttons/ButtonSecondary';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
@@ -12,57 +19,86 @@ const Register = () => {
   const { theme } = useTheme();
   const styles = createStyle(theme);
   const { signUp } = useAuth();
-  const [inputs, setInputs] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
 
-  const handleChange = (name, value) => {
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
+  const {
+    control,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const submitHandler = () => {
-    signUp(inputs.name, inputs.email, inputs.password);
+  const submitHandler = (data) => {
+    signUp(data.name, data.email, data.password);
+    reset();
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="height">
+    <KeyboardAvoidingView style={styles.container} behavior="height" keyboardVerticalOffset="25">
       <Header title="Welcome onboard!" text="Lets help you meet your tasks" />
       <View>
-        <TextInput
-          style={styles.input}
-          onChangeText={(value) => handleChange('name', value)}
-          clearTextOnFocus={true}
-          value={inputs.name}
-          autoComplete="name"
-          placeholder="Enter your username"
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your username"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+          name="name"
         />
+        {errors.name && <Text style={styles.error}>Username is required.</Text>}
 
-        <TextInput
-          style={styles.input}
-          autoComplete="email"
-          onChangeText={(value) => handleChange('email', value)}
-          value={inputs.email}
-          placeholder="Enter your email"
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+            maxLength: 100,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your email"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+          name="email"
         />
+        {errors.email && <Text style={styles.error}>Email is required.</Text>}
 
-        <TextInput
-          style={styles.input}
-          onChangeText={(value) => handleChange('password', value)}
-          value={inputs.password}
-          placeholder="Enter password"
-          secureTextEntry
+        <Controller
+          control={control}
+          rules={{
+            maxLength: 100,
+            minLength: {
+              value: 8,
+              message: 'Min length is 8',
+            },
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              placeholder=" Enter password"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              secureTextEntry
+            />
+          )}
+          name="password"
         />
+        {errors.password && <Text style={styles.error}>Password is required.</Text>}
 
-        <TextInput style={styles.input} placeholder="Confirm password" secureTextEntry />
-
-        <ButtonSecondary name="Register" submitHandler={submitHandler} />
+        <ButtonSecondary name="Register" submitHandler={handleSubmit(submitHandler)} />
       </View>
-
       <Footer text="Already have an account ? " link="Sign In" />
     </KeyboardAvoidingView>
   );

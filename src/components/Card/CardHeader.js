@@ -1,6 +1,6 @@
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
 import { colors, spacing } from '@utils';
-
 import { AntDesign } from '@expo/vector-icons';
 import { createStyle } from './Styles';
 import { useState } from 'react';
@@ -24,17 +24,17 @@ const SubmitTaskButton = ({ onSubmit }) => {
 
 export const CardHeader = ({ onAddNewTask }) => {
   const styles = createStyle(useTheme());
-  const [title, setTitle] = useState(null);
   const [isTypeInput, setIsTypeInput] = useState(false);
+  const { control, reset, handleSubmit } = useForm();
 
   const onAddNewCardItem = () => {
     setIsTypeInput(!isTypeInput);
   };
 
-  const handleSubmitNewTask = () => {
+  const handleSubmitNewTask = (data) => {
     setIsTypeInput(!isTypeInput);
-    onAddNewTask(title);
-    setTitle('');
+    onAddNewTask(data.title);
+    reset();
   };
 
   return (
@@ -42,16 +42,27 @@ export const CardHeader = ({ onAddNewTask }) => {
       {!isTypeInput ? (
         <Text style={styles.text}>Daily Tasks</Text>
       ) : (
-        <TextInput
-          placeholder="What is on your mind?"
-          style={styles.input}
-          onChangeText={(text) => setTitle(text)}
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              placeholder="What is on your mind?"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+          name="title"
         />
       )}
       {!isTypeInput ? (
         <AddNewTaskButton onPress={onAddNewCardItem} />
       ) : (
-        <SubmitTaskButton onSubmit={handleSubmitNewTask} />
+        <SubmitTaskButton onSubmit={handleSubmit(handleSubmitNewTask)} />
       )}
     </View>
   );

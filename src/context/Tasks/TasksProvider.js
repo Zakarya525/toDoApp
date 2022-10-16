@@ -5,14 +5,11 @@ import setTask from '../../services/tasks/setTask';
 import getTask from '../../services/tasks/getTask';
 import modifyTask from '../../services/tasks/modifyTask';
 import removeTask from '../../services/tasks/removeTask';
-import { useAuth } from '../Authentication';
 
 export const TasksProvider = ({ children }) => {
   const initialState = {
     tasks: [],
   };
-
-  const { isLoading } = useAuth();
 
   const [state, dispatch] = useReducer(tasksReducer, initialState);
 
@@ -29,7 +26,6 @@ export const TasksProvider = ({ children }) => {
 
   //Patch Task
   const updateTask = async (task) => {
-    console.log(task);
     const res = await modifyTask(task);
     if (res.status !== 200) throw new Error('Task not modified.');
     dispatch({
@@ -57,7 +53,8 @@ export const TasksProvider = ({ children }) => {
 
   const loadTasks = async () => {
     const res = await getTask();
-    console.log(res);
+    if (res == null) return;
+    console.log(res.data);
     if (res?.status === 200) {
       dispatch({
         type: 'SET_TASKS',
@@ -69,7 +66,10 @@ export const TasksProvider = ({ children }) => {
   //Get Tasks
   useEffect(() => {
     loadTasks();
-  }, [isLoading]);
+    return () => {
+      clearInterval(loadTasks);
+    };
+  }, []);
 
   return (
     <TasksContext.Provider

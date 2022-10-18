@@ -5,4 +5,5 @@ export const colors = {
   addBtnColor: '#B85124',
   offWhite: '#EeEeEe',
   offLightOrange: '#FAA885',
+  red: '#FF0000',
 };

@@ -31,6 +31,12 @@ export const createStyle = (theme) => {
       lineHeight: spacing.xxl,
     },
 
+    error: {
+      marginLeft: 30,
+      color: colors.red,
+      fontFamily: 'Poppins_400Regular_Italic',
+    },
+
     img: {
       width: 250,
       height: 250,

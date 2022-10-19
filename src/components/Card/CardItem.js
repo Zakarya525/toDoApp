@@ -13,7 +13,6 @@ export const CardItem = ({ task, onPress, removeTask }) => {
   const [sound, setSound] = useState();
 
   const handleDelete = () => {
-    console.log(task.title);
     removeTask(task.id);
   };
 

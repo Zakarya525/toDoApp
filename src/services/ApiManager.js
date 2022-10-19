@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const ApiManager = axios.create({
-  baseURL: 'https://todobe-app.herokuapp.com',
+  baseURL: 'http://159.223.210.36/',
   responseType: 'json',
   withCredentials: true,
 });
-ApiManager.defaults.timeout = 5000;
+
 export default ApiManager;

@@ -5,11 +5,14 @@ import setTask from '../../services/tasks/setTask';
 import getTask from '../../services/tasks/getTask';
 import modifyTask from '../../services/tasks/modifyTask';
 import removeTask from '../../services/tasks/removeTask';
+import { useAuth } from '../Authentication';
 
 export const TasksProvider = ({ children }) => {
   const initialState = {
     tasks: [],
   };
+
+  const { user } = useAuth();
 
   const [state, dispatch] = useReducer(tasksReducer, initialState);
 
@@ -53,8 +56,6 @@ export const TasksProvider = ({ children }) => {
 
   const loadTasks = async () => {
     const res = await getTask();
-    if (res == null) return;
-    console.log(res.data);
     if (res?.status === 200) {
       dispatch({
         type: 'SET_TASKS',
@@ -69,7 +70,7 @@ export const TasksProvider = ({ children }) => {
     return () => {
       clearInterval(loadTasks);
     };
-  }, []);
+  }, [user.username]);
 
   return (
     <TasksContext.Provider

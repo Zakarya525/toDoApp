@@ -1,6 +1,6 @@
 import AuthContext from './authContext';
 import AuthReducer from './authReducer';
-import { useEffect, useMemo, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import getToken from '../../services/user/getToken';
 import getUser from '../../services/user/getUser';
@@ -25,13 +25,13 @@ export const AuthProvider = ({ children }) => {
       if (res?.status === 200) {
         storage.set('token', res.data.access_token);
         getUser({ token: res.data.access_token }).then((res) => {
-          if (res?.status === 200) {
+          if (res?.status === 200)
             dispatch({
               type: 'GET_USER',
               token: res.data.access_token,
               payload: res.data,
             });
-          } else {
+          else {
             console.log('User not found');
             dispatch({
               type: 'SET_LOADING_FALSE',
@@ -51,8 +51,6 @@ export const AuthProvider = ({ children }) => {
 
   //Get user data
   useEffect(() => {
-    console.log('useEffect Runs!');
-    console.log(state.user.username);
     setLoading();
     const getToken = async () => await AsyncStorage.getItem('token');
 

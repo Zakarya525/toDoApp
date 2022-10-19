@@ -4,7 +4,6 @@ import { CardBody } from './CardBody';
 import { CardHeader } from './CardHeader';
 import generateUUID from '../../utils/functions';
 import { spacing } from '../../utils/sizes';
-import { useState } from 'react';
 import { useTasks } from '../../context/Tasks';
 import { useTheme } from '../../context/Theme';
 

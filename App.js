@@ -1,9 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import { AuthProvider } from './src/context/Authentication';
-import { ThemeProvider } from './src/context/Theme';
-import { TasksProvider } from './src/context/Tasks';
 import {
   Poppins_100Thin,
   Poppins_100Thin_Italic,
@@ -25,11 +19,17 @@ import {
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
 
-import StackNavigation from './src/navigations/StackNavigation';
+import * as SplashScreen from 'expo-splash-screen';
+import { AuthProvider } from './src/context/Authentication';
 import CustomStatusBar from './src/components/StatusBar';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigation from './src/navigations/StackNavigation';
+import { ThemeProvider } from './src/context/Theme';
+import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
 
 export default function App() {
-  let [fontsLoaded, error] = useFonts({
+  let [fontsLoaded] = useFonts({
     Poppins_100Thin,
     Poppins_100Thin_Italic,
     Poppins_200ExtraLight,
@@ -50,19 +50,24 @@ export default function App() {
     Poppins_900Black_Italic,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+  useEffect(() => {
+    async function prapare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prapare();
+  }, []);
+
+  if (!fontsLoaded) return undefined;
+
+  SplashScreen.hideAsync();
 
   return (
     <AuthProvider>
       <ThemeProvider>
-        <TasksProvider>
-          <NavigationContainer>
-            <CustomStatusBar />
-            <StackNavigation />
-          </NavigationContainer>
-        </TasksProvider>
+        <NavigationContainer>
+          <CustomStatusBar />
+          <StackNavigation />
+        </NavigationContainer>
       </ThemeProvider>
     </AuthProvider>
   );

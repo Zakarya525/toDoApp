@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
-import { fontSizes, spacing } from "../../utils/sizes";
+import { fontSizes, spacing } from '@utils';
+
+import { StyleSheet } from 'react-native';
 
 export const createStyle = (theme) => {
   return StyleSheet.create({
@@ -11,7 +12,7 @@ export const createStyle = (theme) => {
     text: {
       fontSize: fontSizes.lg,
       color: theme.color,
-      fontFamily: "Poppins_400Regular",
+      fontFamily: 'Poppins_400Regular',
     },
   });
 };

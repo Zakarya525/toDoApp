@@ -1,6 +1,6 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import Dashboard from "../screens/Dashboard";
-import DrawerContent from "../components/Drawer/DrawerContent";
+import Dashboard from '@screens/Dashboard';
+import { DrawerContent } from '@components/Drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 

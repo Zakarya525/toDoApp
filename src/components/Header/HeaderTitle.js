@@ -1,20 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { fontSizes } from "../../utilities/sizes";
+import { Text, View } from 'react-native';
+
+import React from 'react';
+import { createStyle } from './Styles';
+import { useTheme } from '@context/Theme';
 
 const HeaderTitle = ({ text }) => {
+  const styles = createStyle(useTheme());
   return (
     <View>
-      <Text style={styles.text}>{text}</Text>
+      <Text style={styles.textLarge}>{text}</Text>
     </View>
   );
 };
 
 export default HeaderTitle;
-
-const styles = StyleSheet.create({
-  text: {
-    fontFamily: "Poppins_700Bold",
-    fontSize: fontSizes.lg,
-  },
-});

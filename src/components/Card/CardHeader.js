@@ -1,24 +1,15 @@
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { fontSizes, spacing } from "../../utils/sizes";
-import { AntDesign } from "@expo/vector-icons";
-import { colors } from "../../utils/colors";
-import { useState } from "react";
-import { useTheme } from "../../context/Theme";
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
+import { colors, spacing } from '@utils';
+import { AntDesign } from '@expo/vector-icons';
+import { createStyle } from './Styles';
+import { useState } from 'react';
+import { useTheme } from '@context/Theme';
 
 const AddNewTaskButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={() => onPress()}>
-      <AntDesign
-        name="pluscircleo"
-        size={spacing.lg}
-        color={colors.addBtnColor}
-      />
+      <AntDesign name="pluscircleo" size={spacing.lg} color={colors.addBtnColor} />
     </TouchableOpacity>
   );
 };
@@ -26,68 +17,52 @@ const AddNewTaskButton = ({ onPress }) => {
 const SubmitTaskButton = ({ onSubmit }) => {
   return (
     <TouchableOpacity onPress={() => onSubmit()}>
-      <AntDesign
-        name="checkcircle"
-        size={spacing.lg}
-        color={colors.addBtnColor}
-      />
+      <AntDesign name="checkcircle" size={spacing.lg} color={colors.addBtnColor} />
     </TouchableOpacity>
   );
 };
 
 export const CardHeader = ({ onAddNewTask }) => {
-  const { theme } = useTheme();
-  const [title, setTitle] = useState(null);
+  const styles = createStyle(useTheme());
   const [isTypeInput, setIsTypeInput] = useState(false);
+  const { control, reset, handleSubmit } = useForm();
 
   const onAddNewCardItem = () => {
     setIsTypeInput(!isTypeInput);
   };
 
-  const handleSubmitNewTask = () => {
+  const handleSubmitNewTask = (data) => {
     setIsTypeInput(!isTypeInput);
-    onAddNewTask(title);
-    setTitle("");
+    onAddNewTask(data.title);
+    reset();
   };
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    cardHeader: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
-    text: {
-      flex: 1,
-      color: theme.color,
-      fontSize: fontSizes.md,
-      fontFamily: "Poppins_500Medium",
-    },
-    input: {
-      flex: 1,
-      color: theme.color,
-      fontSize: fontSizes.md,
-      fontFamily: "Poppins_500Medium",
-    },
-  });
 
   return (
     <View style={styles.cardHeader}>
       {!isTypeInput ? (
         <Text style={styles.text}>Daily Tasks</Text>
       ) : (
-        <TextInput
-          placeholder="What is on your mind?"
-          style={styles.input}
-          onChangeText={(text) => setTitle(text)}
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              placeholder="What is on your mind?"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+          name="title"
         />
       )}
       {!isTypeInput ? (
         <AddNewTaskButton onPress={onAddNewCardItem} />
       ) : (
-        <SubmitTaskButton onSubmit={handleSubmitNewTask} />
+        <SubmitTaskButton onSubmit={handleSubmit(handleSubmitNewTask)} />
       )}
     </View>
   );

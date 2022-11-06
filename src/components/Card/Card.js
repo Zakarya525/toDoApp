@@ -1,15 +1,12 @@
-import { StyleSheet, View } from 'react-native';
-
 import { CardBody } from './CardBody';
 import { CardHeader } from './CardHeader';
-import generateUUID from '../../utils/functions';
-import { spacing } from '../../utils/sizes';
-import { useTasks } from '../../context/Tasks';
-import { useTheme } from '../../context/Theme';
-
+import { View } from 'react-native';
+import { createStyle } from './Styles';
+import { generateUUID } from '@utils';
+import { useTheme } from '@context/Theme';
 export const Card = () => {
-  const { tasks, addTask, updateTask, deleteTask } = useTasks();
   const { theme } = useTheme();
+  const styles = createStyle(theme);
 
   const handleOnAddNewTask = (title) => {
     const task = {
@@ -27,16 +24,6 @@ export const Card = () => {
   function onCardItemPress(task) {
     updateTask(task);
   }
-
-  const styles = StyleSheet.create({
-    card: {
-      flex: 1,
-      backgroundColor: theme.background,
-      marginVertical: spacing.xl,
-      borderRadius: spacing.md,
-      padding: spacing.lg,
-    },
-  });
 
   return (
     <View style={styles.card}>

@@ -1,48 +1,32 @@
 import 'react-native-gesture-handler';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useContext } from 'react';
-import Splash from '../screens/Splash';
-import Login from '../screens/Login';
-import Register from '../screens/Register';
-import Loading from '../components/Loading';
 import DrawerNavigation from './DrawerNavigation';
-import AuthContext from '../context/Authentication/authContext';
+import Loading from '@components/Loading';
+import Login from '@screens/Login';
+import Register from '@screens/Register';
+import Splash from '@screens/Splash';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useAuth } from '@context/Authentication';
 
 const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
-  const { token, isLoading } = useContext(AuthContext);
+  const { token, isLoading } = useAuth();
+
   if (isLoading) {
     return <Loading />;
   }
 
   return (
-    <Stack.Navigator initialRouteName='Splash'>
+    <Stack.Navigator initialRouteName="Splash">
       {token === '' ? (
         <>
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name='Splash'
-            component={Splash}
-          />
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name='Sign Up'
-            component={Register}
-          />
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name='Sign In'
-            component={Login}
-          />
+          <Stack.Screen options={{ headerShown: false }} name="Splash" component={Splash} />
+          <Stack.Screen options={{ headerShown: false }} name="Sign Up" component={Register} />
+          <Stack.Screen options={{ headerShown: false }} name="Sign In" component={Login} />
         </>
       ) : (
         <>
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name='Home'
-            component={DrawerNavigation}
-          />
+          <Stack.Screen options={{ headerShown: false }} name="Home" component={DrawerNavigation} />
         </>
       )}
     </Stack.Navigator>

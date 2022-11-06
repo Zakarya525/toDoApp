@@ -8,7 +8,7 @@ export default (state, action) => {
         isLoading: false,
       };
 
-    case 'GET_TOKEN':
+    case 'LOGIN_USER_AND_GET_TOKEN':
       return {
         ...state,
         token: action.token,

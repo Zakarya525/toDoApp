@@ -1,65 +1,80 @@
-import {
-  Image,
-  KeyboardAvoidingView,
-  StyleSheet,
-  TextInput,
-  View,
-} from "react-native";
-
-import React, { useContext, useState } from "react";
-
-import colors from "../utilities/colors";
-import { fontSizes, spacing } from "../utilities/sizes";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import ButtonSecondary from "../components/Buttons/ButtonSecondary";
-
-import { useAuth } from "../context/Authentication";
+import { Image, KeyboardAvoidingView, TextInput, View, Text } from 'react-native';
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import ButtonSecondary from '@components/Buttons/ButtonSecondary';
+import Footer from '@components/Footer';
+import Header from '@components/Header';
+import { createStyle } from './Styles';
+import { useAuth } from '@context/Authentication';
+import { useTheme } from '@context/Theme';
 
 const Login = () => {
+  const { theme } = useTheme();
+  const styles = createStyle(theme);
   const { signIn } = useAuth();
 
-  const [inputs, setInputs] = useState({
-    username: "",
-    password: "",
-  });
+  const {
+    control,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = (name, value) => {
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
-
-  //will be implementing this using context
-  const submitHandler = () => {
-    signIn(inputs.username, inputs.password);
+  const submitHandler = (data) => {
+    signIn(data.name, data.password);
+    reset();
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="height">
+    <KeyboardAvoidingView style={styles.container} behavior="height" keyboardVerticalOffset="25">
       <Header title="Welcome back!" text="Lets help you meet your tasks" />
 
-      <Image style={styles.img} source={require("../imgs/loginScr.jpg")} />
+      <Image style={styles.img} source={require('../imgs/loginScr.jpg')} />
 
       <View>
-        <TextInput
-          style={styles.input}
-          autoComplete="username"
-          onChangeText={(value) => handleChange("username", value)}
-          value={inputs.username}
-          placeholder="Enter your username"
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your username"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+          name="name"
         />
+        {errors.name && <Text style={styles.error}>Username is required.</Text>}
 
-        <TextInput
-          style={styles.input}
-          onChangeText={(value) => handleChange("password", value)}
-          value={inputs.password}
-          placeholder="Enter password"
-          secureTextEntry
+        <Controller
+          control={control}
+          rules={{
+            maxLength: 100,
+            minLength: {
+              value: 8,
+              message: 'Min length is 8',
+            },
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              placeholder=" Enter password"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              secureTextEntry
+            />
+          )}
+          name="password"
         />
+        {errors.password && <Text style={styles.error}>Password is required.</Text>}
 
-        <ButtonSecondary name="Login" submitHandler={submitHandler} />
+        <ButtonSecondary name="Login" submitHandler={handleSubmit(submitHandler)} />
       </View>
       <Footer text="Don't have an account ? " link="Sign Up" />
     </KeyboardAvoidingView>
@@ -67,34 +82,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.offWhite,
-  },
-
-  input: {
-    width: 320,
-    margin: 12,
-    padding: 12,
-    borderRadius: 30,
-    backgroundColor: colors.white,
-    fontFamily: "Poppins_400Regular",
-  },
-
-  text: {
-    fontFamily: "Poppins_400Regular",
-    fontSize: fontSizes.md,
-    lineHeight: spacing.xxl,
-  },
-
-  img: {
-    width: 250,
-    height: 250,
-    opacity: 0.9,
-  },
-});

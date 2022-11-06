@@ -11,8 +11,7 @@ export const ThemeProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ThemeReducer, initialState);
 
   const loadPreviousThemePreferences = async () => {
-    const theme =
-      (await storage.get('themeMode')) === 'dark' ? darkTheme : lightTheme;
+    const theme = (await storage.get('themeMode')) === 'dark' ? darkTheme : lightTheme;
     dispatch({
       type: 'SET_THEME',
       payload: theme,
@@ -37,7 +36,8 @@ export const ThemeProvider = ({ children }) => {
       value={{
         theme: state.theme,
         toggleTheme,
-      }}>
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

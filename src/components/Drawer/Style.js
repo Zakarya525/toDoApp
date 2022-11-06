@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const createStyle = (theme) => {
   return StyleSheet.create({
@@ -11,7 +11,7 @@ export const createStyle = (theme) => {
     title: {
       fontSize: 16,
       marginTop: 3,
-      fontWeight: "bold",
+      fontWeight: 'bold',
     },
     caption: {
       fontSize: 14,
@@ -19,16 +19,16 @@ export const createStyle = (theme) => {
     },
     row: {
       marginTop: 20,
-      flexDirection: "row",
-      alignItems: "center",
+      flexDirection: 'row',
+      alignItems: 'center',
     },
     section: {
-      flexDirection: "row",
-      alignItems: "center",
+      flexDirection: 'row',
+      alignItems: 'center',
       marginRight: 15,
     },
     paragraph: {
-      fontWeight: "bold",
+      fontWeight: 'bold',
       marginRight: 3,
     },
     drawerSection: {
@@ -36,13 +36,13 @@ export const createStyle = (theme) => {
     },
     bottomDrawerSection: {
       marginBottom: 15,
-      borderTopColor: "#f4f4f4",
+      borderTopColor: '#f4f4f4',
       borderTopWidth: 1,
     },
     preference: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
       paddingVertical: 12,
       paddingHorizontal: 16,
     },

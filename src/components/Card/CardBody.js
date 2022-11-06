@@ -1,7 +1,9 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
 import { CardItem } from './CardItem';
+import { createStyle } from './Styles';
 
 export const CardBody = ({ tasks, onCardItemPress, removeTask }) => {
+  const styles = createStyle(useTheme());
   const renderItem = ({ item }) => (
     <CardItem task={item} onPress={onCardItemPress} removeTask={removeTask} />
   );
@@ -15,10 +17,3 @@ export const CardBody = ({ tasks, onCardItemPress, removeTask }) => {
     />
   );
 };
-
-const styles = StyleSheet.create({
-  cardBody: {
-    flex: 1,
-    marginTop: 12,
-  },
-});
